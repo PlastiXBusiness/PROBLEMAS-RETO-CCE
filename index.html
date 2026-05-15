@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cuestionario de Feedback el Reto CCE</title>
 <style>
-/* RESET TOTAL — elimina azul en iOS/Android */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,12 +12,7 @@
   -webkit-tap-highlight-color: transparent;
   -webkit-text-fill-color: inherit;
 }
-
-a, a:visited, a:hover, a:active {
-  color: inherit;
-  text-decoration: none;
-}
-
+a, a:visited, a:hover, a:active { color: inherit; text-decoration: none; }
 button {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -26,15 +20,13 @@ button {
   color: #1a1a1a;
   border-radius: 0;
 }
-
-input, textarea, select {
+input, textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   color: #1a1a1a;
   border-radius: 0;
 }
-
 body {
   font-family: Georgia, 'Times New Roman', serif;
   background: #f4f1ec;
@@ -42,166 +34,52 @@ body {
   padding: 40px 20px 80px;
   -webkit-font-smoothing: antialiased;
 }
-
 .container { max-width: 680px; margin: 0 auto; }
 
 /* HEADER */
-.form-header {
-  margin-bottom: 40px;
-  border-bottom: 2px solid #1a1a1a;
-  padding-bottom: 24px;
-}
-.form-header h1 {
-  font-size: 24px;
-  font-weight: normal;
-  line-height: 1.35;
-  margin-bottom: 10px;
-  color: #1a1a1a;
-}
-.form-header p {
-  font-size: 13px;
-  color: #666;
-  line-height: 1.7;
-}
-.time-badge {
-  display: inline-block;
-  margin-top: 12px;
-  font-size: 11px;
-  font-family: 'Courier New', monospace;
-  padding: 4px 10px;
-  border: 1px solid #bbb;
-  color: #888;
-}
+.form-header { margin-bottom: 40px; border-bottom: 2px solid #1a1a1a; padding-bottom: 24px; }
+.form-header h1 { font-size: 24px; font-weight: normal; line-height: 1.35; margin-bottom: 10px; color: #1a1a1a; }
+.form-header p { font-size: 13px; color: #666; line-height: 1.7; }
+.time-badge { display: inline-block; margin-top: 12px; font-size: 11px; font-family: 'Courier New', monospace; padding: 4px 10px; border: 1px solid #bbb; color: #888; }
 
 /* PROGRESS */
 .progress-wrap { margin-bottom: 32px; }
-.progress-label {
-  font-size: 11px;
-  font-family: 'Courier New', monospace;
-  color: #999;
-  margin-bottom: 6px;
-}
+.progress-label { font-size: 11px; font-family: 'Courier New', monospace; color: #999; margin-bottom: 6px; }
 .progress-bg { height: 3px; background: #ddd; }
 .progress-fill { height: 3px; background: #1a1a1a; transition: width 0.3s; }
 
 /* SECTION */
 .section { margin-bottom: 50px; }
-.section-tag {
-  font-size: 10px;
-  font-family: 'Courier New', monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #999;
-  margin-bottom: 5px;
-}
-.section-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 4px;
-  line-height: 1.3;
-  color: #1a1a1a;
-}
-.section-desc {
-  font-size: 13px;
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 8px;
-}
-.section-filter-note {
-  font-size: 11px;
-  font-family: 'Courier New', monospace;
-  color: #bbb;
-  margin-bottom: 22px;
-  padding: 6px 10px;
-  border-left: 2px solid #ddd;
-}
-
-.divider {
-  border: none;
-  border-top: 1px solid #d0c9bc;
-  margin: 40px 0;
-}
+.section-tag { font-size: 10px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.1em; color: #999; margin-bottom: 5px; }
+.section-title { font-size: 18px; font-weight: bold; margin-bottom: 4px; line-height: 1.3; color: #1a1a1a; }
+.section-desc { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 8px; }
+.section-filter-note { font-size: 11px; font-family: 'Courier New', monospace; color: #bbb; margin-bottom: 22px; padding: 6px 10px; border-left: 2px solid #ddd; }
+.divider { border: none; border-top: 1px solid #d0c9bc; margin: 40px 0; }
 
 /* QUESTION */
-.q {
-  background: #fff;
-  border: 1px solid #d0c9bc;
-  padding: 20px;
-  margin-bottom: 14px;
-}
-.q-code {
-  font-size: 10px;
-  font-family: 'Courier New', monospace;
-  color: #ccc;
-  display: block;
-  margin-bottom: 6px;
-}
-.q-text {
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 1.5;
-  margin-bottom: 4px;
-  color: #1a1a1a;
-}
-.q-hint {
-  font-size: 12px;
-  color: #888;
-  font-style: italic;
-  margin-bottom: 14px;
-  line-height: 1.5;
-  border-left: 2px solid #e8e3da;
-  padding-left: 10px;
-}
+.q { background: #fff; border: 1px solid #d0c9bc; padding: 20px; margin-bottom: 14px; }
+.q-code { font-size: 10px; font-family: 'Courier New', monospace; color: #ccc; display: block; margin-bottom: 6px; }
+.q-text { font-size: 14px; font-weight: bold; line-height: 1.5; margin-bottom: 4px; color: #1a1a1a; }
+.q-hint { font-size: 12px; color: #888; font-style: italic; margin-bottom: 14px; line-height: 1.5; border-left: 2px solid #e8e3da; padding-left: 10px; }
 
 /* CHOICE */
 .choice-list { display: flex; flex-direction: column; gap: 7px; }
 .choice-btn {
-  padding: 10px 14px;
-  border: 1px solid #d0c9bc;
-  background: #f4f1ec;
-  text-align: left;
-  font-size: 13px;
-  font-family: Georgia, serif;
-  cursor: pointer;
-  line-height: 1.4;
-  transition: background 0.1s;
-  color: #1a1a1a;
-  -webkit-appearance: none;
-  display: block;
-  width: 100%;
+  padding: 10px 14px; border: 1px solid #d0c9bc; background: #f4f1ec;
+  text-align: left; font-size: 13px; font-family: Georgia, serif;
+  cursor: pointer; line-height: 1.4; transition: background 0.1s;
+  color: #1a1a1a; -webkit-appearance: none; display: block; width: 100%;
 }
 .choice-btn:hover { background: #e8e3da; }
 .choice-btn.sel { background: #1a1a1a; color: #f4f1ec; border-color: #1a1a1a; }
 
 /* SCALE */
-.scale-instr {
-  font-size: 10px;
-  font-family: 'Courier New', monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: #aaa;
-  margin-bottom: 8px;
-}
-.scale-row {
-  display: flex;
-  gap: 0;
-  border: 1px solid #d0c9bc;
-  width: fit-content;
-  margin-bottom: 4px;
-}
+.scale-instr { font-size: 10px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+.scale-row { display: flex; gap: 0; border: 1px solid #d0c9bc; width: fit-content; margin-bottom: 4px; }
 .scale-btn {
-  width: 52px;
-  height: 46px;
-  border: none;
-  border-right: 1px solid #d0c9bc;
-  background: #f4f1ec;
-  font-size: 15px;
-  font-weight: bold;
-  font-family: Georgia, serif;
-  cursor: pointer;
-  transition: background 0.1s;
-  color: #1a1a1a;
-  -webkit-appearance: none;
+  width: 52px; height: 46px; border: none; border-right: 1px solid #d0c9bc;
+  background: #f4f1ec; font-size: 15px; font-weight: bold; font-family: Georgia, serif;
+  cursor: pointer; transition: background 0.1s; color: #1a1a1a; -webkit-appearance: none;
 }
 .scale-btn:last-child { border-right: none; }
 .scale-btn:hover { background: #e8e3da; }
@@ -210,180 +88,55 @@ body {
 .scale-btn.v3 { background: #ffe8a0; color: #7a4a00; }
 .scale-btn.v4 { background: #ffc880; color: #8a2a00; }
 .scale-btn.v5 { background: #ffb0b0; color: #8a1010; }
-.scale-ends {
-  display: flex;
-  justify-content: space-between;
-  width: 260px;
-  font-size: 10px;
-  color: #aaa;
-  font-family: 'Courier New', monospace;
-  margin-bottom: 5px;
-}
-.scale-desc {
-  font-size: 12px;
-  color: #888;
-  font-style: italic;
-  min-height: 18px;
-}
+.scale-ends { display: flex; justify-content: space-between; width: 260px; font-size: 10px; color: #aaa; font-family: 'Courier New', monospace; margin-bottom: 5px; }
+.scale-desc { font-size: 12px; color: #888; font-style: italic; min-height: 18px; }
 
 /* NPS */
-.nps-row {
-  display: flex;
-  gap: 0;
-  border: 1px solid #d0c9bc;
-  width: fit-content;
-  flex-wrap: wrap;
-  margin-bottom: 4px;
-}
+.nps-row { display: flex; gap: 0; border: 1px solid #d0c9bc; width: fit-content; flex-wrap: wrap; margin-bottom: 4px; }
 .nps-btn {
-  width: 42px;
-  height: 38px;
-  border: none;
-  border-right: 1px solid #d0c9bc;
-  background: #f4f1ec;
-  font-size: 13px;
-  font-family: Georgia, serif;
-  cursor: pointer;
-  transition: background 0.1s;
-  color: #1a1a1a;
-  -webkit-appearance: none;
+  width: 42px; height: 38px; border: none; border-right: 1px solid #d0c9bc;
+  background: #f4f1ec; font-size: 13px; font-family: Georgia, serif;
+  cursor: pointer; transition: background 0.1s; color: #1a1a1a; -webkit-appearance: none;
 }
 .nps-btn:last-child { border-right: none; }
 .nps-btn:hover { background: #e8e3da; }
 .nps-btn.sel { background: #1a1a1a; color: #f4f1ec; }
-.nps-ends {
-  display: flex;
-  justify-content: space-between;
-  font-size: 10px;
-  color: #aaa;
-  font-family: 'Courier New', monospace;
-  margin-bottom: 5px;
-  max-width: 462px;
-}
+.nps-ends { display: flex; justify-content: space-between; font-size: 10px; color: #aaa; font-family: 'Courier New', monospace; margin-bottom: 5px; max-width: 462px; }
 
 /* OPEN */
 .open-input {
-  width: 100%;
-  padding: 11px 12px;
-  font-size: 13px;
-  font-family: Georgia, serif;
-  border: 1px solid #d0c9bc;
-  background: #f9f7f3;
-  color: #1a1a1a;
-  resize: vertical;
-  min-height: 70px;
-  -webkit-appearance: none;
+  width: 100%; padding: 11px 12px; font-size: 13px; font-family: Georgia, serif;
+  border: 1px solid #d0c9bc; background: #f9f7f3; color: #1a1a1a;
+  resize: vertical; min-height: 70px; -webkit-appearance: none;
 }
 .open-input:focus { outline: 2px solid #1a1a1a; border-color: #1a1a1a; }
 .open-input.tall { min-height: 90px; }
 .open-input::placeholder { color: #aaa; }
 
 /* SPECIAL CARDS */
-.blind-card {
-  background: #fff;
-  border: 1px solid #d0c9bc;
-  border-left: 3px solid #1a1a1a;
-  padding: 20px;
-  margin-bottom: 14px;
-}
-.blind-label {
-  font-size: 11px;
-  font-family: 'Courier New', monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #999;
-  margin-bottom: 6px;
-}
-.blind-q {
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 1.5;
-  margin-bottom: 4px;
-  color: #1a1a1a;
-}
-.blind-hint {
-  font-size: 12px;
-  color: #888;
-  font-style: italic;
-  margin-bottom: 14px;
-  line-height: 1.5;
-}
-.price-q {
-  background: #fff;
-  border: 1px solid #d0c9bc;
-  border-left: 3px solid #2a5a0a;
-  padding: 20px;
-  margin-bottom: 14px;
-}
+.blind-card { background: #fff; border: 1px solid #d0c9bc; border-left: 3px solid #1a1a1a; padding: 20px; margin-bottom: 14px; }
+.blind-label { font-size: 11px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.08em; color: #999; margin-bottom: 6px; }
+.blind-q { font-size: 14px; font-weight: bold; line-height: 1.5; margin-bottom: 4px; color: #1a1a1a; }
+.blind-hint { font-size: 12px; color: #888; font-style: italic; margin-bottom: 14px; line-height: 1.5; }
+.price-q { background: #fff; border: 1px solid #d0c9bc; border-left: 3px solid #2a5a0a; padding: 20px; margin-bottom: 14px; }
 .price-q .q-text { color: #1a1a1a; }
 
 /* SUBMIT */
 .submit-btn {
-  width: 100%;
-  padding: 16px;
-  background: #1a1a1a;
-  color: #f4f1ec;
-  border: none;
-  font-size: 15px;
-  font-family: Georgia, serif;
-  cursor: pointer;
-  letter-spacing: 0.05em;
-  margin-top: 32px;
-  transition: background 0.15s;
-  -webkit-appearance: none;
+  width: 100%; padding: 16px; background: #1a1a1a; color: #f4f1ec; border: none;
+  font-size: 15px; font-family: Georgia, serif; cursor: pointer;
+  letter-spacing: 0.05em; margin-top: 32px; transition: background 0.15s; -webkit-appearance: none;
 }
 .submit-btn:hover { background: #333; }
-.submit-btn:disabled {
-  background: #aaa;
-  cursor: not-allowed;
-}
-.submit-note {
-  font-size: 12px;
-  color: #aaa;
-  text-align: center;
-  margin-top: 10px;
-  font-style: italic;
-}
-
-/* SENDING STATE */
-.sending-msg {
-  display: none;
-  text-align: center;
-  padding: 16px;
-  font-size: 13px;
-  color: #888;
-  font-style: italic;
-}
+.submit-btn:disabled { background: #aaa; cursor: not-allowed; }
+.sending-msg { display: none; text-align: center; padding: 14px; font-size: 13px; color: #888; font-style: italic; }
+.error-msg { display: none; background: #fff0f0; border: 1px solid #f7c1c1; padding: 12px 16px; font-size: 13px; color: #8a1010; margin-top: 12px; text-align: center; }
+.submit-note { font-size: 12px; color: #aaa; text-align: center; margin-top: 10px; font-style: italic; }
 
 /* SUCCESS */
-.success {
-  display: none;
-  text-align: center;
-  padding: 80px 20px;
-}
-.success h2 {
-  font-size: 22px;
-  font-weight: normal;
-  margin-bottom: 12px;
-  color: #1a1a1a;
-}
-.success p {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.7;
-}
-
-/* ERROR */
-.error-msg {
-  display: none;
-  background: #fff0f0;
-  border: 1px solid #f7c1c1;
-  padding: 12px 16px;
-  font-size: 13px;
-  color: #8a1010;
-  margin-top: 12px;
-  text-align: center;
-}
+.success { display: none; text-align: center; padding: 80px 20px; }
+.success h2 { font-size: 22px; font-weight: normal; margin-bottom: 12px; color: #1a1a1a; }
+.success p { font-size: 14px; color: #666; line-height: 1.7; }
 
 @media (max-width: 500px) {
   body { padding: 24px 16px 60px; }
@@ -398,22 +151,18 @@ body {
 <body>
 <div class="container" id="main">
 
-  <!-- HEADER -->
   <div class="form-header">
     <h1>Cuestionario de Feedback<br>el Reto CCE</h1>
     <p>Este formulario nos ayuda a mejorar el sistema del Reto. Tus respuestas honestas, aunque sean negativas, son las mas valiosas. No hay respuestas correctas ni incorrectas.</p>
     <span class="time-badge">8 minutos — 11 fases</span>
   </div>
 
-  <!-- PROGRESS -->
   <div class="progress-wrap">
     <div class="progress-label" id="progLabel">Introduccion</div>
     <div class="progress-bg"><div class="progress-fill" id="progFill" style="width:5%"></div></div>
   </div>
 
-  <!-- ======================== -->
   <!-- INTRO -->
-  <!-- ======================== -->
   <div class="section" id="s-intro">
     <div class="section-tag">Introduccion</div>
     <div class="section-title">Cuatro preguntas rapidas para empezar</div>
@@ -431,13 +180,11 @@ body {
         <button class="choice-btn" onclick="pick(this,'p0a')">Solo lo estoy valorando — aun no compre</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P0b</span>
       <p class="q-text">¿En que pais te encuentras?</p>
-      <input type="text" class="open-input" id="p0b" style="min-height:auto;padding:10px 12px;font-size:13px" placeholder="Escribe tu pais...">
+      <input type="text" class="open-input" id="p0b" style="min-height:auto;padding:10px 12px;" placeholder="Escribe tu pais...">
     </div>
-
     <div class="q">
       <span class="q-code">P0c</span>
       <p class="q-text">¿Cuantos anos tienes?</p>
@@ -448,7 +195,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p0c')">55 o mas</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P0d</span>
       <p class="q-text">¿Como llegaste a conocer el negocio de Corsair Connect?</p>
@@ -481,7 +227,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p1a')">No entendi de que se trataba</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P1b</span>
       <p class="q-text">¿Que tan dificil te resulto entender que ibas a conseguir exactamente?</p>
@@ -497,7 +242,6 @@ body {
       <div class="scale-ends"><span>Lo entendi enseguida</span><span>No lo entendi</span></div>
       <div class="scale-desc" id="sd-p1b"></div>
     </div>
-
     <div class="q">
       <span class="q-code">P1c</span>
       <p class="q-text">La persona que te presento el negocio, ¿como la valorarias en terminos de credibilidad?</p>
@@ -533,7 +277,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p2a')">"Me convencio el sistema y lo que prometia"</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P2b</span>
       <p class="q-text">¿Cuanto te costo creer que podias conseguir $600 en 14 dias sin experiencia en ventas?</p>
@@ -548,7 +291,6 @@ body {
       <div class="scale-ends"><span>Lo crei</span><span>No me lo crei</span></div>
       <div class="scale-desc" id="sd-p2b"></div>
     </div>
-
     <div class="q">
       <span class="q-code">P2c</span>
       <p class="q-text">¿Que fue lo que finalmente te hizo pasar — o no pasar — por caja?</p>
@@ -575,7 +317,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p3a')">Me abrume y cerre la plataforma</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P3b</span>
       <p class="q-text">¿Que tan dificil fue entender el modelo de negocio completo?</p>
@@ -590,7 +331,6 @@ body {
       <div class="scale-ends"><span>Muy claro</span><span>Nunca lo entendi</span></div>
       <div class="scale-desc" id="sd-p3b"></div>
     </div>
-
     <div class="q">
       <span class="q-code">P3c</span>
       <p class="q-text">La plataforma de Corsair Connect — USDC, wallets, transferencias — ¿en que medida fue una barrera?</p>
@@ -605,7 +345,6 @@ body {
       <div class="scale-ends"><span>Sin barrera</span><span>Me bloqueo</span></div>
       <div class="scale-desc" id="sd-p3c"></div>
     </div>
-
     <div class="q">
       <span class="q-code">P3d</span>
       <p class="q-text">¿Que es lo primero que cambiarias del proceso de bienvenida?</p>
@@ -631,7 +370,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p4a')">No llegue a hacerla</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P4b</span>
       <p class="q-text">¿Cuanto te afecto la preocupacion de molestar o incomodar a tus amigos y familia?</p>
@@ -646,7 +384,6 @@ body {
       <div class="scale-ends"><span>No me preocupo</span><span>Freno importante</span></div>
       <div class="scale-desc" id="sd-p4b"></div>
     </div>
-
     <div class="q">
       <span class="q-code">P4c</span>
       <p class="q-text">¿En que medida sentiste que no tenias suficientes contactos relevantes?</p>
@@ -682,7 +419,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p5a')">No tuve ninguna barrera especial</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P5b</span>
       <p class="q-text">¿Cuanto te costo mantener la energia tras los primeros rechazos?</p>
@@ -697,7 +433,6 @@ body {
       <div class="scale-ends"><span>Sin efecto</span><span>Me desanime</span></div>
       <div class="scale-desc" id="sd-p5b"></div>
     </div>
-
     <div class="q">
       <span class="q-code">P5c</span>
       <p class="q-text">¿Que tan util fue el script de mensajes tal como estaba escrito?</p>
@@ -712,7 +447,6 @@ body {
       <div class="scale-ends"><span>Muy util</span><span>No me servia</span></div>
       <div class="scale-desc" id="sd-p5c"></div>
     </div>
-
     <div class="q">
       <span class="q-code">P5d</span>
       <p class="q-text">Cuando alguien te dijo que parecia una estafa o un multinivel, ¿que hiciste?</p>
@@ -747,7 +481,6 @@ body {
       <div class="scale-ends"><span>La mayoria lo vio</span><span>Casi nadie</span></div>
       <div class="scale-desc" id="sd-p6a"></div>
     </div>
-
     <div class="q">
       <span class="q-code">P6b</span>
       <p class="q-text">¿Cual fue la razon mas comun por la que tus contactos no llegaron a ver el video?</p>
@@ -759,7 +492,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p6b')">La mayoria si llego a verlo</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P6c</span>
       <p class="q-text">¿Que parte del video o la landing genero mas dudas en tus contactos?</p>
@@ -785,7 +517,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p7a')">No llegue a esta fase</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P7b</span>
       <p class="q-text">Para quienes consideraron comprar pero no lo hicieron, ¿cual fue la objecion principal?</p>
@@ -797,7 +528,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p7b')">No llegue a esta fase</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P7c</span>
       <p class="q-text">¿En que medida fue una barrera la complejidad tecnica del proceso de pago?</p>
@@ -833,7 +563,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p8a')">No llegue a generar ninguna comision</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P8b</span>
       <p class="q-text">¿Que tan claro fue el proceso para retirar tu dinero a tu cuenta bancaria?</p>
@@ -848,7 +577,6 @@ body {
       <div class="scale-ends"><span>Muy claro</span><span>Imposible sin ayuda</span></div>
       <div class="scale-desc" id="sd-p8b"></div>
     </div>
-
     <div class="q">
       <span class="q-code">P8c</span>
       <p class="q-text">El 20% de la comision en creditos CSR26 en vez de efectivo, ¿como te afecto?</p>
@@ -878,7 +606,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p9a')">No lo intente</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P9b</span>
       <p class="q-text">¿Cual fue el mayor obstaculo para conseguir 3 personas que completaran el Reto 1?</p>
@@ -890,7 +617,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p9b')">No llegue a esta fase</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P9c</span>
       <p class="q-text">¿En que medida te freno que el resultado dependiera de otras personas?</p>
@@ -925,7 +651,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p10a')">Nunca la llegue a usar</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P10b</span>
       <p class="q-text">¿Que tan intimidante fue la plataforma para alguien sin experiencia en cripto o wallets?</p>
@@ -940,7 +665,6 @@ body {
       <div class="scale-ends"><span>Sin problema</span><span>Me bloqueo</span></div>
       <div class="scale-desc" id="sd-p10b"></div>
     </div>
-
     <div class="q">
       <span class="q-code">P10c</span>
       <p class="q-text">¿Que seccion de Corsair Connect te resulto mas confusa?</p>
@@ -953,7 +677,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p10c')">Ninguna especialmente</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P11a</span>
       <p class="q-text">¿Llegaste a entender que son los CSR26 y por que tienen valor?</p>
@@ -964,7 +687,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'p11a')">No lo llegue a entender y fue un freno</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">P11b</span>
       <p class="q-text">¿Cuanto te freno no saber a quien ni como vender tus CSR26?</p>
@@ -979,7 +701,6 @@ body {
       <div class="scale-ends"><span>Sin preocupacion</span><span>Duda principal</span></div>
       <div class="scale-desc" id="sd-p11b"></div>
     </div>
-
     <div class="q">
       <span class="q-code">P11c</span>
       <p class="q-text">La posibilidad de que la empresa cierre y pierdas tus creditos, ¿fue una preocupacion real?</p>
@@ -1010,7 +731,6 @@ body {
       <p class="blind-hint">Describe que estabas haciendo, que paso y que sentiste.</p>
       <textarea id="pc1" class="open-input tall" placeholder="Tu respuesta mas honesta aqui..."></textarea>
     </div>
-
     <div class="q">
       <span class="q-code">PC2</span>
       <p class="q-text">¿En que momento estuviste mas cerca de abandonar?</p>
@@ -1023,13 +743,11 @@ body {
         <button class="choice-btn" onclick="pick(this,'pc2')">No estuve cerca de abandonar</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">PC3</span>
       <p class="q-text">¿Que es lo que nadie te dijo antes de empezar y que ojala te hubieran dicho?</p>
       <textarea id="pc3" class="open-input tall" placeholder="Escribe con libertad..."></textarea>
     </div>
-
     <div class="price-q">
       <span class="q-code">OFR1</span>
       <p class="q-text">Cuando viste que el precio era $17, ¿que fue lo primero que pensaste?</p>
@@ -1041,7 +759,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'ofr1')">"Me genero curiosidad precisamente por ser tan bajo"</button>
       </div>
     </div>
-
     <div class="price-q">
       <span class="q-code">OFR2</span>
       <p class="q-text">¿Crees que un precio mas alto — $47 o $97 — habria aumentado tu percepcion de calidad?</p>
@@ -1052,7 +769,6 @@ body {
         <button class="choice-btn" onclick="pick(this,'ofr2')">No lo se</button>
       </div>
     </div>
-
     <div class="q">
       <span class="q-code">OFR3</span>
       <p class="q-text">¿Recomendarias el sistema a alguien de confianza tal como esta hoy?</p>
@@ -1074,7 +790,6 @@ body {
       <div class="nps-ends" style="margin-top:4px"><span>Nunca</span><span>Sin dudar</span></div>
       <div class="scale-desc" id="sd-ofr3" style="margin-top:4px"></div>
     </div>
-
     <div class="q">
       <span class="q-code">OFR4</span>
       <p class="q-text">¿Que haria que lo recomendaras mas — o que lo recomendaras si aun no lo harias?</p>
@@ -1082,7 +797,6 @@ body {
     </div>
   </div>
 
-  <!-- SUBMIT -->
   <button class="submit-btn" id="submitBtn" onclick="enviar()">Enviar mis respuestas</button>
   <div class="sending-msg" id="sendingMsg">Enviando tus respuestas...</div>
   <div class="error-msg" id="errorMsg">Hubo un error al enviar. Por favor intentalo de nuevo.</div>
@@ -1090,17 +804,15 @@ body {
 
 </div>
 
-<!-- SUCCESS -->
 <div class="success" id="success">
   <h2>Muchas gracias.</h2>
-  <p>Tus respuestas nos llegan directamente y las usaremos para mejorar el sistema antes del lanzamiento.<br><br>Estaremos en contacto contigo muy pronto.</p>
+  <p>Tus respuestas nos llegan directamente y las usaremos para mejorar el sistema.<br><br>Estaremos en contacto contigo muy pronto.</p>
 </div>
 
 <script>
-// ─── CONFIGURACION ───────────────────────────────────────────────────────────
-// PEGA AQUI la URL de tu Apps Script (ver instrucciones en el archivo .gs)
+// ─── PON AQUI TU URL ──────────────────────────────────────────────────────
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwIjjYIHyZWgaorGVFaIPVLtqZ8dTox5m7_IQmfodgv2BsyfVJcyIbay6h3gIgjrkv1Xw/exec';
-// ─────────────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────
 
 const SCALE_TEXTS = {
   1: "1 — No es un problema para mi",
@@ -1115,24 +827,17 @@ const NPS_TEXTS = {
   8:"8 — Probablemente si", 9:"9", 10:"10 — Lo recomendaria sin dudar"
 };
 
-// Almacen de respuestas
 const R = {};
 
-const sections = ['s-intro','s-f1','s-f2','s-f3','s-f4','s-f5','s-f6','s-f7','s-f8','s-f9','s-f10','s-cierre'];
-const labels   = ['Introduccion','Fase 1 — Captacion','Fase 2 — Decision $17','Fase 3 — Onboarding','Fase 4 — Lista contactos','Fase 5 — Contactar','Fase 6 — El video','Fase 7 — Venta','Fase 8 — Comisiones','Fase 9 — Reto 2','Fase 10 y 11 — Plataforma y CSR26','Cierre'];
-const pcts     = [5,14,23,32,41,50,59,68,77,86,93,100];
-
 function pick(btn, id) {
-  const list = btn.closest('.choice-list');
-  list.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('sel'));
+  btn.closest('.choice-list').querySelectorAll('.choice-btn').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel');
   R[id] = btn.textContent.trim();
 }
 
 function sc(btn, id) {
   const v = parseInt(btn.textContent.trim());
-  const row = btn.closest('.scale-row');
-  row.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('v1','v2','v3','v4','v5'));
+  btn.closest('.scale-row').querySelectorAll('.scale-btn').forEach(b => b.classList.remove('v1','v2','v3','v4','v5'));
   btn.classList.add('v' + v);
   const el = document.getElementById('sd-' + id);
   if (el) el.textContent = SCALE_TEXTS[v];
@@ -1141,18 +846,15 @@ function sc(btn, id) {
 
 function nps(btn, id) {
   const v = parseInt(btn.textContent.trim());
-  const row = btn.closest('.nps-row');
-  row.querySelectorAll('.nps-btn').forEach(b => b.classList.remove('sel'));
+  btn.closest('.nps-row').querySelectorAll('.nps-btn').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel');
   const el = document.getElementById('sd-' + id);
   if (el) el.textContent = NPS_TEXTS[v];
   R[id] = v;
 }
 
-// Recoger campos de texto al enviar
 function collectTextFields() {
-  const textIds = ['p0b','p2c','p3d','p6c','pc1','pc3','ofr4'];
-  textIds.forEach(id => {
+  ['p0b','p2c','p3d','p6c','pc1','pc3','ofr4'].forEach(id => {
     const el = document.getElementById(id);
     if (el) R[id] = el.value.trim();
   });
@@ -1170,36 +872,44 @@ function enviar() {
   sending.style.display = 'block';
   errMsg.style.display = 'none';
 
-  // Anadir timestamp
   R['timestamp'] = new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' });
   R['formulario'] = 'Feedback Journey CCE';
 
-  fetch(APPS_SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(R)
-  })
-  .then(() => {
+  // JSONP — sin problemas de CORS en ningun navegador ni movil
+  const callbackName = 'cb_' + Date.now();
+  const scriptEl = document.createElement('script');
+
+  window[callbackName] = function(response) {
+    delete window[callbackName];
+    if (document.body.contains(scriptEl)) document.body.removeChild(scriptEl);
     document.getElementById('main').style.display = 'none';
     document.getElementById('success').style.display = 'block';
     window.scrollTo(0, 0);
-  })
-  .catch(() => {
+  };
+
+  scriptEl.onerror = function() {
+    delete window[callbackName];
     btn.disabled = false;
     btn.textContent = 'Enviar mis respuestas';
     sending.style.display = 'none';
     errMsg.style.display = 'block';
-  });
+  };
+
+  const params = encodeURIComponent(JSON.stringify(R));
+  scriptEl.src = APPS_SCRIPT_URL + '?callback=' + callbackName + '&data=' + params;
+  document.body.appendChild(scriptEl);
 }
 
-// Barra de progreso por scroll
+// Barra de progreso
+const sections = ['s-intro','s-f1','s-f2','s-f3','s-f4','s-f5','s-f6','s-f7','s-f8','s-f9','s-f10','s-cierre'];
+const labels   = ['Introduccion','Fase 1 — Captacion','Fase 2 — Decision $17','Fase 3 — Onboarding','Fase 4 — Lista contactos','Fase 5 — Contactar','Fase 6 — El video','Fase 7 — Venta','Fase 8 — Comisiones','Fase 9 — Reto 2','Fase 10 y 11 — Plataforma y CSR26','Cierre'];
+const pcts     = [5,14,23,32,41,50,59,68,77,86,93,100];
+
 window.addEventListener('scroll', () => {
   let active = 0;
   sections.forEach((id, i) => {
     const el = document.getElementById(id);
-    if (!el) return;
-    if (el.getBoundingClientRect().top <= window.innerHeight * 0.45) active = i;
+    if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.45) active = i;
   });
   document.getElementById('progFill').style.width = pcts[active] + '%';
   document.getElementById('progLabel').textContent = labels[active];
