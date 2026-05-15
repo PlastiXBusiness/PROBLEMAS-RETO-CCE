@@ -3,15 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cuestionario de Feedback — Reto CCE</title>
+<title>Cuestionario de Feedback el Reto CCE</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* RESET TOTAL — elimina azul en iOS/Android */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-fill-color: inherit;
+}
+
+a, a:visited, a:hover, a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: #1a1a1a;
+  border-radius: 0;
+}
+
+input, textarea, select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: #1a1a1a;
+  border-radius: 0;
+}
 
 body {
   font-family: Georgia, 'Times New Roman', serif;
   background: #f4f1ec;
   color: #1a1a1a;
   padding: 40px 20px 80px;
+  -webkit-font-smoothing: antialiased;
 }
 
 .container { max-width: 680px; margin: 0 auto; }
@@ -27,6 +56,7 @@ body {
   font-weight: normal;
   line-height: 1.35;
   margin-bottom: 10px;
+  color: #1a1a1a;
 }
 .form-header p {
   font-size: 13px;
@@ -69,6 +99,7 @@ body {
   font-weight: bold;
   margin-bottom: 4px;
   line-height: 1.3;
+  color: #1a1a1a;
 }
 .section-desc {
   font-size: 13px;
@@ -110,6 +141,7 @@ body {
   font-weight: bold;
   line-height: 1.5;
   margin-bottom: 4px;
+  color: #1a1a1a;
 }
 .q-hint {
   font-size: 12px;
@@ -133,6 +165,10 @@ body {
   cursor: pointer;
   line-height: 1.4;
   transition: background 0.1s;
+  color: #1a1a1a;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
 }
 .choice-btn:hover { background: #e8e3da; }
 .choice-btn.sel { background: #1a1a1a; color: #f4f1ec; border-color: #1a1a1a; }
@@ -154,7 +190,8 @@ body {
   margin-bottom: 4px;
 }
 .scale-btn {
-  width: 52px; height: 46px;
+  width: 52px;
+  height: 46px;
   border: none;
   border-right: 1px solid #d0c9bc;
   background: #f4f1ec;
@@ -163,6 +200,8 @@ body {
   font-family: Georgia, serif;
   cursor: pointer;
   transition: background 0.1s;
+  color: #1a1a1a;
+  -webkit-appearance: none;
 }
 .scale-btn:last-child { border-right: none; }
 .scale-btn:hover { background: #e8e3da; }
@@ -197,7 +236,8 @@ body {
   margin-bottom: 4px;
 }
 .nps-btn {
-  width: 42px; height: 38px;
+  width: 42px;
+  height: 38px;
   border: none;
   border-right: 1px solid #d0c9bc;
   background: #f4f1ec;
@@ -205,6 +245,8 @@ body {
   font-family: Georgia, serif;
   cursor: pointer;
   transition: background 0.1s;
+  color: #1a1a1a;
+  -webkit-appearance: none;
 }
 .nps-btn:last-child { border-right: none; }
 .nps-btn:hover { background: #e8e3da; }
@@ -212,11 +254,11 @@ body {
 .nps-ends {
   display: flex;
   justify-content: space-between;
-  width: 462px;
   font-size: 10px;
   color: #aaa;
   font-family: 'Courier New', monospace;
   margin-bottom: 5px;
+  max-width: 462px;
 }
 
 /* OPEN */
@@ -230,9 +272,11 @@ body {
   color: #1a1a1a;
   resize: vertical;
   min-height: 70px;
+  -webkit-appearance: none;
 }
-.open-input:focus { outline: 2px solid #1a1a1a; }
+.open-input:focus { outline: 2px solid #1a1a1a; border-color: #1a1a1a; }
 .open-input.tall { min-height: 90px; }
+.open-input::placeholder { color: #aaa; }
 
 /* SPECIAL CARDS */
 .blind-card {
@@ -255,6 +299,7 @@ body {
   font-weight: bold;
   line-height: 1.5;
   margin-bottom: 4px;
+  color: #1a1a1a;
 }
 .blind-hint {
   font-size: 12px;
@@ -263,7 +308,6 @@ body {
   margin-bottom: 14px;
   line-height: 1.5;
 }
-
 .price-q {
   background: #fff;
   border: 1px solid #d0c9bc;
@@ -271,6 +315,7 @@ body {
   padding: 20px;
   margin-bottom: 14px;
 }
+.price-q .q-text { color: #1a1a1a; }
 
 /* SUBMIT */
 .submit-btn {
@@ -285,13 +330,28 @@ body {
   letter-spacing: 0.05em;
   margin-top: 32px;
   transition: background 0.15s;
+  -webkit-appearance: none;
 }
 .submit-btn:hover { background: #333; }
+.submit-btn:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
 .submit-note {
   font-size: 12px;
   color: #aaa;
   text-align: center;
   margin-top: 10px;
+  font-style: italic;
+}
+
+/* SENDING STATE */
+.sending-msg {
+  display: none;
+  text-align: center;
+  padding: 16px;
+  font-size: 13px;
+  color: #888;
   font-style: italic;
 }
 
@@ -301,14 +361,37 @@ body {
   text-align: center;
   padding: 80px 20px;
 }
-.success h2 { font-size: 22px; font-weight: normal; margin-bottom: 12px; }
-.success p { font-size: 14px; color: #666; line-height: 1.7; }
+.success h2 {
+  font-size: 22px;
+  font-weight: normal;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+.success p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.7;
+}
+
+/* ERROR */
+.error-msg {
+  display: none;
+  background: #fff0f0;
+  border: 1px solid #f7c1c1;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #8a1010;
+  margin-top: 12px;
+  text-align: center;
+}
 
 @media (max-width: 500px) {
+  body { padding: 24px 16px 60px; }
   .scale-btn { width: 44px; height: 42px; font-size: 13px; }
   .scale-ends { width: 220px; }
   .nps-btn { width: 38px; height: 36px; font-size: 12px; }
-  .nps-ends { width: 418px; }
+  .form-header h1 { font-size: 20px; }
+  .section-title { font-size: 16px; }
 }
 </style>
 </head>
@@ -317,7 +400,7 @@ body {
 
   <!-- HEADER -->
   <div class="form-header">
-    <h1>Cuestionario de Feedback<br>El Reto Corsair Connect</h1>
+    <h1>Cuestionario de Feedback<br>el Reto CCE</h1>
     <p>Este formulario nos ayuda a mejorar el sistema del Reto. Tus respuestas honestas, aunque sean negativas, son las mas valiosas. No hay respuestas correctas ni incorrectas.</p>
     <span class="time-badge">8 minutos — 11 fases</span>
   </div>
@@ -352,7 +435,7 @@ body {
     <div class="q">
       <span class="q-code">P0b</span>
       <p class="q-text">¿En que pais te encuentras?</p>
-      <input type="text" class="open-input" style="min-height:auto;padding:10px 12px;font-size:13px" placeholder="Escribe tu pais...">
+      <input type="text" class="open-input" id="p0b" style="min-height:auto;padding:10px 12px;font-size:13px" placeholder="Escribe tu pais...">
     </div>
 
     <div class="q">
@@ -380,13 +463,11 @@ body {
 
   <hr class="divider">
 
-  <!-- ======================== -->
-  <!-- FASE 1: CAPTACION -->
-  <!-- ======================== -->
+  <!-- FASE 1 -->
   <div class="section" id="s-f1">
     <div class="section-tag">Fase 1</div>
     <div class="section-title">Cuando te presentaron el negocio por primera vez</div>
-    <div class="section-desc">Las primeras impresiones son las mas dificiles de cambiar. Queremos saber exactamente que paso por tu cabeza.</div>
+    <div class="section-desc">Las primeras impresiones son las mas dificiles de cambiar.</div>
     <div class="section-filter-note">Todas las personas responden esta seccion</div>
 
     <div class="q">
@@ -403,8 +484,8 @@ body {
 
     <div class="q">
       <span class="q-code">P1b</span>
-      <p class="q-text">¿Que tan dificil te resulto entender que ibas a conseguir exactamente con el sistema?</p>
-      <p class="q-hint">1 = Lo entendi enseguida · 5 = No llegue a entenderlo del todo</p>
+      <p class="q-text">¿Que tan dificil te resulto entender que ibas a conseguir exactamente?</p>
+      <p class="q-hint">1 = Lo entendi enseguida · 5 = No llegue a entenderlo</p>
       <div class="scale-instr">Marca tu nivel</div>
       <div class="scale-row">
         <button class="scale-btn" onclick="sc(this,'p1b')">1</button>
@@ -435,9 +516,7 @@ body {
 
   <hr class="divider">
 
-  <!-- ======================== -->
-  <!-- FASE 2: DECISION $17 -->
-  <!-- ======================== -->
+  <!-- FASE 2 -->
   <div class="section" id="s-f2">
     <div class="section-tag">Fase 2</div>
     <div class="section-title">La decision de pagar $17</div>
@@ -449,7 +528,7 @@ body {
       <div class="choice-list">
         <button class="choice-btn" onclick="pick(this,'p2a')">"$17 es muy barato, lo pruebo sin dudar"</button>
         <button class="choice-btn" onclick="pick(this,'p2a')">"Tan barato me genero desconfianza sobre si era serio"</button>
-        <button class="choice-btn" onclick="pick(this,'p2a')">"No eran $17 lo que me frenaba, sino no entender bien que era"</button>
+        <button class="choice-btn" onclick="pick(this,'p2a')">"No eran $17 lo que me frenaba, sino no entender que era"</button>
         <button class="choice-btn" onclick="pick(this,'p2a')">"Tenia claro que no iba a funcionar para mi"</button>
         <button class="choice-btn" onclick="pick(this,'p2a')">"Me convencio el sistema y lo que prometia"</button>
       </div>
@@ -473,16 +552,13 @@ body {
     <div class="q">
       <span class="q-code">P2c</span>
       <p class="q-text">¿Que fue lo que finalmente te hizo pasar — o no pasar — por caja?</p>
-      <p class="q-hint">Tu respuesta mas honesta es la mas util.</p>
-      <textarea class="open-input" placeholder="Cuéntanos con libertad..."></textarea>
+      <textarea id="p2c" class="open-input" placeholder="Cuentanos con libertad..."></textarea>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- ======================== -->
-  <!-- FASE 3: ONBOARDING -->
-  <!-- ======================== -->
+  <!-- FASE 3 -->
   <div class="section" id="s-f3">
     <div class="section-tag">Fase 3</div>
     <div class="section-title">Las primeras horas tras comprar</div>
@@ -502,7 +578,7 @@ body {
 
     <div class="q">
       <span class="q-code">P3b</span>
-      <p class="q-text">¿Que tan dificil fue entender el modelo de negocio completo — como se gana dinero, los creditos, el plan de afiliados?</p>
+      <p class="q-text">¿Que tan dificil fue entender el modelo de negocio completo?</p>
       <p class="q-hint">1 = Cristalino desde el principio · 5 = Nunca lo entendi del todo</p>
       <div class="scale-row">
         <button class="scale-btn" onclick="sc(this,'p3b')">1</button>
@@ -517,7 +593,7 @@ body {
 
     <div class="q">
       <span class="q-code">P3c</span>
-      <p class="q-text">La plataforma de Corsair Connect — USDC, wallets, transferencias — ¿en que medida fue una barrera para ti?</p>
+      <p class="q-text">La plataforma de Corsair Connect — USDC, wallets, transferencias — ¿en que medida fue una barrera?</p>
       <p class="q-hint">1 = Ninguna barrera · 5 = Me bloqueo completamente</p>
       <div class="scale-row">
         <button class="scale-btn" onclick="sc(this,'p3c')">1</button>
@@ -533,15 +609,13 @@ body {
     <div class="q">
       <span class="q-code">P3d</span>
       <p class="q-text">¿Que es lo primero que cambiarias del proceso de bienvenida?</p>
-      <textarea class="open-input" placeholder="Escribe tu sugerencia..."></textarea>
+      <textarea id="p3d" class="open-input" placeholder="Escribe tu sugerencia..."></textarea>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- ======================== -->
-  <!-- FASE 4: LISTA CONTACTOS -->
-  <!-- ======================== -->
+  <!-- FASE 4 -->
   <div class="section" id="s-f4">
     <div class="section-tag">Fase 4</div>
     <div class="section-title">Construir la lista de contactos</div>
@@ -576,7 +650,7 @@ body {
     <div class="q">
       <span class="q-code">P4c</span>
       <p class="q-text">¿En que medida sentiste que no tenias suficientes contactos relevantes?</p>
-      <p class="q-hint">1 = Tenia mas que suficiente · 5 = Senti que no me quedaba nadie a quien contactar</p>
+      <p class="q-hint">1 = Tenia mas que suficiente · 5 = Senti que no me quedaba nadie</p>
       <div class="scale-row">
         <button class="scale-btn" onclick="sc(this,'p4c')">1</button>
         <button class="scale-btn" onclick="sc(this,'p4c')">2</button>
@@ -591,9 +665,7 @@ body {
 
   <hr class="divider">
 
-  <!-- ======================== -->
-  <!-- FASE 5: CONTACTAR -->
-  <!-- ======================== -->
+  <!-- FASE 5 -->
   <div class="section" id="s-f5">
     <div class="section-tag">Fase 5</div>
     <div class="section-title">Enviar los primeros mensajes</div>
@@ -613,7 +685,7 @@ body {
 
     <div class="q">
       <span class="q-code">P5b</span>
-      <p class="q-text">¿Cuanto te costo mantener la energia y seguir enviando mensajes tras los primeros rechazos?</p>
+      <p class="q-text">¿Cuanto te costo mantener la energia tras los primeros rechazos?</p>
       <p class="q-hint">1 = No me afectaron · 5 = Me desanime y lo deje</p>
       <div class="scale-row">
         <button class="scale-btn" onclick="sc(this,'p5b')">1</button>
@@ -629,7 +701,7 @@ body {
     <div class="q">
       <span class="q-code">P5c</span>
       <p class="q-text">¿Que tan util fue el script de mensajes tal como estaba escrito?</p>
-      <p class="q-hint">1 = Muy util, lo use tal cual · 5 = No me servia</p>
+      <p class="q-hint">1 = Muy util · 5 = No me servia</p>
       <div class="scale-row">
         <button class="scale-btn" onclick="sc(this,'p5c')">1</button>
         <button class="scale-btn" onclick="sc(this,'p5c')">2</button>
@@ -643,7 +715,7 @@ body {
 
     <div class="q">
       <span class="q-code">P5d</span>
-      <p class="q-text">Cuando alguien te dijo que le parecia una estafa o un multinivel, ¿que hiciste?</p>
+      <p class="q-text">Cuando alguien te dijo que parecia una estafa o un multinivel, ¿que hiciste?</p>
       <div class="choice-list">
         <button class="choice-btn" onclick="pick(this,'p5d')">Use el guion de objeciones y lo resolvi</button>
         <button class="choice-btn" onclick="pick(this,'p5d')">Intente explicarlo pero no supe como</button>
@@ -655,9 +727,7 @@ body {
 
   <hr class="divider">
 
-  <!-- ======================== -->
-  <!-- FASE 6: VIDEO -->
-  <!-- ======================== -->
+  <!-- FASE 6 -->
   <div class="section" id="s-f6">
     <div class="section-tag">Fase 6</div>
     <div class="section-title">Cuando tus contactos veian el video</div>
@@ -665,7 +735,7 @@ body {
 
     <div class="q">
       <span class="q-code">P6a</span>
-      <p class="q-text">¿Que tan dificil te resulto conseguir que tus contactos vieran el video o la landing?</p>
+      <p class="q-text">¿Que tan dificil te resulto conseguir que tus contactos vieran el video?</p>
       <p class="q-hint">1 = La mayoria lo vio · 5 = Casi nadie llego a verlo</p>
       <div class="scale-row">
         <button class="scale-btn" onclick="sc(this,'p6a')">1</button>
@@ -684,7 +754,7 @@ body {
       <div class="choice-list">
         <button class="choice-btn" onclick="pick(this,'p6b')">Dijeron que lo veerian luego y nunca lo hicieron</button>
         <button class="choice-btn" onclick="pick(this,'p6b')">No le dieron credibilidad al enlace</button>
-        <button class="choice-btn" onclick="pick(this,'p6b')">Les parecio demasiado comercial o de ventas</button>
+        <button class="choice-btn" onclick="pick(this,'p6b')">Les parecio demasiado comercial</button>
         <button class="choice-btn" onclick="pick(this,'p6b')">No tuvieron tiempo</button>
         <button class="choice-btn" onclick="pick(this,'p6b')">La mayoria si llego a verlo</button>
       </div>
@@ -692,20 +762,18 @@ body {
 
     <div class="q">
       <span class="q-code">P6c</span>
-      <p class="q-text">¿Que parte del video o de la landing genero mas dudas en tus contactos?</p>
-      <textarea class="open-input" placeholder="Escribe lo que recuerdas..."></textarea>
+      <p class="q-text">¿Que parte del video o la landing genero mas dudas en tus contactos?</p>
+      <textarea id="p6c" class="open-input" placeholder="Escribe lo que recuerdas..."></textarea>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- ======================== -->
-  <!-- FASE 7: VENTA -->
-  <!-- ======================== -->
+  <!-- FASE 7 -->
   <div class="section" id="s-f7">
     <div class="section-tag">Fase 7</div>
     <div class="section-title">Cuando un contacto consideraba comprar un paquete</div>
-    <div class="section-desc">El momento de decision de compra de tu contacto — 100, 350 o 1.000 EUR.</div>
+    <div class="section-desc">El momento de decision de compra — 100, 350 o 1.000 EUR.</div>
 
     <div class="q">
       <span class="q-code">P7a</span>
@@ -722,10 +790,10 @@ body {
       <span class="q-code">P7b</span>
       <p class="q-text">Para quienes consideraron comprar pero no lo hicieron, ¿cual fue la objecion principal?</p>
       <div class="choice-list">
-        <button class="choice-btn" onclick="pick(this,'p7b')">No entendian que eran los creditos de plastico ni si tenian valor real</button>
-        <button class="choice-btn" onclick="pick(this,'p7b')">El proceso de pago con USDC o transferencia les genero desconfianza</button>
+        <button class="choice-btn" onclick="pick(this,'p7b')">No entendian que eran los creditos de plastico</button>
+        <button class="choice-btn" onclick="pick(this,'p7b')">El proceso de pago con USDC les genero desconfianza</button>
         <button class="choice-btn" onclick="pick(this,'p7b')">Dudaban de la empresa — pedian mas pruebas</button>
-        <button class="choice-btn" onclick="pick(this,'p7b')">El precio del paquete era demasiado elevado para ellos</button>
+        <button class="choice-btn" onclick="pick(this,'p7b')">El precio del paquete era demasiado elevado</button>
         <button class="choice-btn" onclick="pick(this,'p7b')">No llegue a esta fase</button>
       </div>
     </div>
@@ -748,9 +816,7 @@ body {
 
   <hr class="divider">
 
-  <!-- ======================== -->
-  <!-- FASE 8: COMISIONES -->
-  <!-- ======================== -->
+  <!-- FASE 8 -->
   <div class="section" id="s-f8">
     <div class="section-tag">Fase 8</div>
     <div class="section-title">Tu primera comision</div>
@@ -761,7 +827,7 @@ body {
       <span class="q-code">P8a</span>
       <p class="q-text">¿Recibiste tu primera comision?</p>
       <div class="choice-list">
-        <button class="choice-btn" onclick="pick(this,'p8a')">Si, y supe exactamente como rastrearla y retirarla</button>
+        <button class="choice-btn" onclick="pick(this,'p8a')">Si, y supe como rastrearla y retirarla</button>
         <button class="choice-btn" onclick="pick(this,'p8a')">Si, pero el proceso de retirada fue confuso</button>
         <button class="choice-btn" onclick="pick(this,'p8a')">La genere pero no supe como cobrarla</button>
         <button class="choice-btn" onclick="pick(this,'p8a')">No llegue a generar ninguna comision</button>
@@ -770,8 +836,8 @@ body {
 
     <div class="q">
       <span class="q-code">P8b</span>
-      <p class="q-text">¿Que tan claro fue el proceso para retirar tu dinero de la plataforma a tu cuenta bancaria?</p>
-      <p class="q-hint">1 = Muy claro y sencillo · 5 = Imposible de entender sin ayuda externa</p>
+      <p class="q-text">¿Que tan claro fue el proceso para retirar tu dinero a tu cuenta bancaria?</p>
+      <p class="q-hint">1 = Muy claro · 5 = Imposible sin ayuda externa</p>
       <div class="scale-row">
         <button class="scale-btn" onclick="sc(this,'p8b')">1</button>
         <button class="scale-btn" onclick="sc(this,'p8b')">2</button>
@@ -785,7 +851,7 @@ body {
 
     <div class="q">
       <span class="q-code">P8c</span>
-      <p class="q-text">El hecho de que el 20% de la comision se pague en creditos CSR26 en vez de efectivo, ¿como te afecto?</p>
+      <p class="q-text">El 20% de la comision en creditos CSR26 en vez de efectivo, ¿como te afecto?</p>
       <div class="choice-list">
         <button class="choice-btn" onclick="pick(this,'p8c')">No me importo — lo entendia y lo acepte</button>
         <button class="choice-btn" onclick="pick(this,'p8c')">Me parecio bien pero no sabia que hacer con los CSR26</button>
@@ -797,9 +863,7 @@ body {
 
   <hr class="divider">
 
-  <!-- ======================== -->
-  <!-- FASE 9: RETO 2 -->
-  <!-- ======================== -->
+  <!-- FASE 9 -->
   <div class="section" id="s-f9">
     <div class="section-tag">Fase 9</div>
     <div class="section-title">El Reto 2 — Referir a 3 personas</div>
@@ -819,17 +883,17 @@ body {
       <span class="q-code">P9b</span>
       <p class="q-text">¿Cual fue el mayor obstaculo para conseguir 3 personas que completaran el Reto 1?</p>
       <div class="choice-list">
-        <button class="choice-btn" onclick="pick(this,'p9b')">Ya habia agotado mis contactos cercanos en el Reto 1</button>
+        <button class="choice-btn" onclick="pick(this,'p9b')">Ya habia agotado mis contactos cercanos</button>
         <button class="choice-btn" onclick="pick(this,'p9b')">Que actuaran dependia de ellas, no de mi</button>
         <button class="choice-btn" onclick="pick(this,'p9b')">No tenia tiempo de gestionar a 3 personas a la vez</button>
-        <button class="choice-btn" onclick="pick(this,'p9b')">El rechazo anterior me dejo sin energia para seguir</button>
+        <button class="choice-btn" onclick="pick(this,'p9b')">El rechazo anterior me dejo sin energia</button>
         <button class="choice-btn" onclick="pick(this,'p9b')">No llegue a esta fase</button>
       </div>
     </div>
 
     <div class="q">
       <span class="q-code">P9c</span>
-      <p class="q-text">¿En que medida te freno que el resultado dependiera de otras personas y no solo de ti?</p>
+      <p class="q-text">¿En que medida te freno que el resultado dependiera de otras personas?</p>
       <p class="q-hint">1 = No me importo · 5 = Fue desmotivador y lo deje</p>
       <div class="scale-row">
         <button class="scale-btn" onclick="sc(this,'p9c')">1</button>
@@ -845,9 +909,7 @@ body {
 
   <hr class="divider">
 
-  <!-- ======================== -->
-  <!-- FASE 10 + 11: PLATAFORMA + CSR26 -->
-  <!-- ======================== -->
+  <!-- FASE 10 + 11 -->
   <div class="section" id="s-f10">
     <div class="section-tag">Fase 10 y 11</div>
     <div class="section-title">La plataforma de Corsair Connect y los creditos CSR26</div>
@@ -855,7 +917,7 @@ body {
 
     <div class="q">
       <span class="q-code">P10a</span>
-      <p class="q-text">¿Con que frecuencia usas — o usaste — la plataforma de Corsair Connect?</p>
+      <p class="q-text">¿Con que frecuencia usas la plataforma de Corsair Connect?</p>
       <div class="choice-list">
         <button class="choice-btn" onclick="pick(this,'p10a')">La uso regularmente y la domino</button>
         <button class="choice-btn" onclick="pick(this,'p10a')">La uso pero me cuesta navegar por ella</button>
@@ -905,7 +967,7 @@ body {
 
     <div class="q">
       <span class="q-code">P11b</span>
-      <p class="q-text">¿Cuanto te freno no saber a quien ni como vender tus CSR26 si quisieras hacerlo?</p>
+      <p class="q-text">¿Cuanto te freno no saber a quien ni como vender tus CSR26?</p>
       <p class="q-hint">1 = No me preocupo · 5 = Una de mis mayores dudas</p>
       <div class="scale-row">
         <button class="scale-btn" onclick="sc(this,'p11b')">1</button>
@@ -920,7 +982,7 @@ body {
 
     <div class="q">
       <span class="q-code">P11c</span>
-      <p class="q-text">La posibilidad de que la empresa cierre y pierdas tus creditos, ¿fue una preocupacion real para ti?</p>
+      <p class="q-text">La posibilidad de que la empresa cierre y pierdas tus creditos, ¿fue una preocupacion real?</p>
       <p class="q-hint">1 = No me lo plantee · 5 = Fue un freno importante</p>
       <div class="scale-row">
         <button class="scale-btn" onclick="sc(this,'p11c')">1</button>
@@ -936,28 +998,26 @@ body {
 
   <hr class="divider">
 
-  <!-- ======================== -->
-  <!-- CIERRE: PUNTOS CIEGOS + $17 -->
-  <!-- ======================== -->
+  <!-- CIERRE -->
   <div class="section" id="s-cierre">
     <div class="section-tag">Cierre</div>
     <div class="section-title">Las preguntas mas importantes</div>
-    <div class="section-desc">Tomate el tiempo que necesites con estas. Son las que mas nos ayudan.</div>
+    <div class="section-desc">Tomate el tiempo que necesites con estas.</div>
 
     <div class="blind-card">
       <div class="blind-label">Punto ciego — PC1</div>
-      <p class="blind-q">¿Hubo algun momento especifico donde sentiste que el sistema te pedia mas de lo que podias dar, o donde perdiste la fe en el resultado?</p>
-      <p class="blind-hint">Si es asi, describe que estabas haciendo, que paso y que sentiste. Sin limite de extension.</p>
-      <textarea class="open-input tall" placeholder="Tu respuesta mas honesta aqui. Puede ser un momento muy concreto o una sensacion general..."></textarea>
+      <p class="blind-q">¿Hubo algun momento donde sentiste que el sistema te pedia mas de lo que podias dar, o donde perdiste la fe en el resultado?</p>
+      <p class="blind-hint">Describe que estabas haciendo, que paso y que sentiste.</p>
+      <textarea id="pc1" class="open-input tall" placeholder="Tu respuesta mas honesta aqui..."></textarea>
     </div>
 
     <div class="q">
       <span class="q-code">PC2</span>
-      <p class="q-text">Si tuvieras que senalar el momento exacto en el que mas cerca estuviste de abandonar, ¿cual fue?</p>
+      <p class="q-text">¿En que momento estuviste mas cerca de abandonar?</p>
       <div class="choice-list">
         <button class="choice-btn" onclick="pick(this,'pc2')">Cuando intente entender el negocio por primera vez</button>
-        <button class="choice-btn" onclick="pick(this,'pc2')">Cuando hice los primeros contactos y llegaron los primeros rechazos</button>
-        <button class="choice-btn" onclick="pick(this,'pc2')">Cuando intente explicarles el negocio a mis contactos</button>
+        <button class="choice-btn" onclick="pick(this,'pc2')">Cuando llegaron los primeros rechazos</button>
+        <button class="choice-btn" onclick="pick(this,'pc2')">Cuando intente explicar el negocio a mis contactos</button>
         <button class="choice-btn" onclick="pick(this,'pc2')">Cuando vi el proceso de pago o la plataforma de Corsair</button>
         <button class="choice-btn" onclick="pick(this,'pc2')">Cuando no vi resultados en la primera semana</button>
         <button class="choice-btn" onclick="pick(this,'pc2')">No estuve cerca de abandonar</button>
@@ -967,13 +1027,12 @@ body {
     <div class="q">
       <span class="q-code">PC3</span>
       <p class="q-text">¿Que es lo que nadie te dijo antes de empezar y que ojala te hubieran dicho?</p>
-      <textarea class="open-input tall" placeholder="Escribe con libertad..."></textarea>
+      <textarea id="pc3" class="open-input tall" placeholder="Escribe con libertad..."></textarea>
     </div>
 
     <div class="price-q">
       <span class="q-code">OFR1</span>
       <p class="q-text">Cuando viste que el precio era $17, ¿que fue lo primero que pensaste?</p>
-      <p class="q-hint">Marca la opcion mas honesta, no la mas correcta.</p>
       <div class="choice-list" style="margin-top:10px">
         <button class="choice-btn" onclick="pick(this,'ofr1')">"Tan barato, no puede ser serio ni de calidad"</button>
         <button class="choice-btn" onclick="pick(this,'ofr1')">"Es tan bajo que no arriesgo nada — lo pruebo"</button>
@@ -985,10 +1044,10 @@ body {
 
     <div class="price-q">
       <span class="q-code">OFR2</span>
-      <p class="q-text">¿Crees que un precio mas alto — por ejemplo $47 o $97 — habria aumentado tu percepcion de la calidad del sistema?</p>
+      <p class="q-text">¿Crees que un precio mas alto — $47 o $97 — habria aumentado tu percepcion de calidad?</p>
       <div class="choice-list" style="margin-top:10px">
         <button class="choice-btn" onclick="pick(this,'ofr2')">Si — a $17 no me lo tome tan en serio</button>
-        <button class="choice-btn" onclick="pick(this,'ofr2')">No — el precio no cambiaria mi percepcion de calidad</button>
+        <button class="choice-btn" onclick="pick(this,'ofr2')">No — el precio no cambiaria mi percepcion</button>
         <button class="choice-btn" onclick="pick(this,'ofr2')">Un precio mas alto me habria frenado mas</button>
         <button class="choice-btn" onclick="pick(this,'ofr2')">No lo se</button>
       </div>
@@ -1012,19 +1071,21 @@ body {
         <button class="nps-btn" onclick="nps(this,'ofr3')">9</button>
         <button class="nps-btn" onclick="nps(this,'ofr3')" style="border-right:none">10</button>
       </div>
-      <div class="nps-ends" style="margin-top:4px"><span>Nunca lo recomendaria</span><span>Lo recomendaria sin dudar</span></div>
+      <div class="nps-ends" style="margin-top:4px"><span>Nunca</span><span>Sin dudar</span></div>
       <div class="scale-desc" id="sd-ofr3" style="margin-top:4px"></div>
     </div>
 
     <div class="q">
       <span class="q-code">OFR4</span>
       <p class="q-text">¿Que haria que lo recomendaras mas — o que lo recomendaras si aun no lo harias?</p>
-      <textarea class="open-input tall" placeholder="Escribe aqui..."></textarea>
+      <textarea id="ofr4" class="open-input tall" placeholder="Escribe aqui..."></textarea>
     </div>
   </div>
 
   <!-- SUBMIT -->
-  <button class="submit-btn" onclick="enviar()">Enviar mis respuestas</button>
+  <button class="submit-btn" id="submitBtn" onclick="enviar()">Enviar mis respuestas</button>
+  <div class="sending-msg" id="sendingMsg">Enviando tus respuestas...</div>
+  <div class="error-msg" id="errorMsg">Hubo un error al enviar. Por favor intentalo de nuevo.</div>
   <p class="submit-note">Tus respuestas son anonimas y se usan solo para mejorar el sistema.</p>
 
 </div>
@@ -1036,6 +1097,11 @@ body {
 </div>
 
 <script>
+// ─── CONFIGURACION ───────────────────────────────────────────────────────────
+// PEGA AQUI la URL de tu Apps Script (ver instrucciones en el archivo .gs)
+const APPS_SCRIPT_URL = 'PEGA_AQUI_TU_URL_DE_APPS_SCRIPT';
+// ─────────────────────────────────────────────────────────────────────────────
+
 const SCALE_TEXTS = {
   1: "1 — No es un problema para mi",
   2: "2 — Me ralentiza un poco",
@@ -1044,10 +1110,13 @@ const SCALE_TEXTS = {
   5: "5 — Es un freno total"
 };
 const NPS_TEXTS = {
-  0:"0 — Jamas lo recomendaria",1:"1",2:"2",3:"3",
-  4:"4",5:"5 — Neutral",6:"6",7:"7",8:"8 — Probablemente si",
-  9:"9",10:"10 — Lo recomendaria sin dudar"
+  0:"0 — Jamas lo recomendaria", 1:"1", 2:"2", 3:"3",
+  4:"4", 5:"5 — Neutral", 6:"6", 7:"7",
+  8:"8 — Probablemente si", 9:"9", 10:"10 — Lo recomendaria sin dudar"
 };
+
+// Almacen de respuestas
+const R = {};
 
 const sections = ['s-intro','s-f1','s-f2','s-f3','s-f4','s-f5','s-f6','s-f7','s-f8','s-f9','s-f10','s-cierre'];
 const labels   = ['Introduccion','Fase 1 — Captacion','Fase 2 — Decision $17','Fase 3 — Onboarding','Fase 4 — Lista contactos','Fase 5 — Contactar','Fase 6 — El video','Fase 7 — Venta','Fase 8 — Comisiones','Fase 9 — Reto 2','Fase 10 y 11 — Plataforma y CSR26','Cierre'];
@@ -1057,17 +1126,17 @@ function pick(btn, id) {
   const list = btn.closest('.choice-list');
   list.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel');
+  R[id] = btn.textContent.trim();
 }
 
 function sc(btn, id) {
   const v = parseInt(btn.textContent.trim());
   const row = btn.closest('.scale-row');
-  row.querySelectorAll('.scale-btn').forEach(b => {
-    b.classList.remove('v1','v2','v3','v4','v5');
-  });
+  row.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('v1','v2','v3','v4','v5'));
   btn.classList.add('v' + v);
   const el = document.getElementById('sd-' + id);
   if (el) el.textContent = SCALE_TEXTS[v];
+  R[id] = v;
 }
 
 function nps(btn, id) {
@@ -1077,14 +1146,54 @@ function nps(btn, id) {
   btn.classList.add('sel');
   const el = document.getElementById('sd-' + id);
   if (el) el.textContent = NPS_TEXTS[v];
+  R[id] = v;
+}
+
+// Recoger campos de texto al enviar
+function collectTextFields() {
+  const textIds = ['p0b','p2c','p3d','p6c','pc1','pc3','ofr4'];
+  textIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) R[id] = el.value.trim();
+  });
 }
 
 function enviar() {
-  document.getElementById('main').style.display = 'none';
-  document.getElementById('success').style.display = 'block';
-  window.scrollTo(0, 0);
+  collectTextFields();
+
+  const btn = document.getElementById('submitBtn');
+  const sending = document.getElementById('sendingMsg');
+  const errMsg = document.getElementById('errorMsg');
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  sending.style.display = 'block';
+  errMsg.style.display = 'none';
+
+  // Anadir timestamp
+  R['timestamp'] = new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' });
+  R['formulario'] = 'Feedback Journey CCE';
+
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(R)
+  })
+  .then(() => {
+    document.getElementById('main').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+    window.scrollTo(0, 0);
+  })
+  .catch(() => {
+    btn.disabled = false;
+    btn.textContent = 'Enviar mis respuestas';
+    sending.style.display = 'none';
+    errMsg.style.display = 'block';
+  });
 }
 
+// Barra de progreso por scroll
 window.addEventListener('scroll', () => {
   let active = 0;
   sections.forEach((id, i) => {
