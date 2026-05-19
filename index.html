@@ -3,525 +3,1098 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formulario CCE — Problemas Generales</title>
+<title>Cuestionario de Feedback — El Reto Corsair Connect</title>
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-text-fill-color: inherit;
-}
-button {
-  -webkit-appearance: none;
-  appearance: none;
-  color: #1a1a1a;
-  border-radius: 0;
-}
-input, textarea {
-  -webkit-appearance: none;
-  appearance: none;
-  color: #1a1a1a;
-  border-radius: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
   font-family: Georgia, 'Times New Roman', serif;
   background: #f4f1ec;
   color: #1a1a1a;
   padding: 40px 20px 80px;
-  -webkit-font-smoothing: antialiased;
 }
+
 .container { max-width: 680px; margin: 0 auto; }
 
 /* HEADER */
-.form-header { margin-bottom: 40px; border-bottom: 2px solid #1a1a1a; padding-bottom: 24px; }
-.form-header h1 { font-size: 24px; font-weight: normal; line-height: 1.35; margin-bottom: 10px; color: #1a1a1a; }
-.form-header p { font-size: 13px; color: #666; line-height: 1.7; }
-.time-badge { display: inline-block; margin-top: 12px; font-size: 11px; font-family: 'Courier New', monospace; padding: 4px 10px; border: 1px solid #bbb; color: #888; }
+.form-header {
+  margin-bottom: 40px;
+  border-bottom: 2px solid #1a1a1a;
+  padding-bottom: 24px;
+}
+.form-header h1 {
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+.form-header p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.7;
+}
+.time-badge {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  padding: 4px 10px;
+  border: 1px solid #bbb;
+  color: #888;
+}
 
-/* ESCALA REFERENCIA */
-.scale-ref { background: #fff; border: 1px solid #d0c9bc; padding: 16px 20px; margin-bottom: 40px; }
-.scale-ref strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 10px; font-family: 'Courier New', monospace; }
-.scale-ref-row { display: flex; gap: 0; border: 1px solid #d0c9bc; }
-.scale-ref-cell { flex: 1; padding: 8px 4px; text-align: center; border-right: 1px solid #d0c9bc; font-size: 11px; line-height: 1.4; }
-.scale-ref-cell:last-child { border-right: none; }
-.scale-ref-num { font-size: 17px; font-weight: bold; display: block; }
-.s1 .scale-ref-num { color: #3a7a1a; }
-.s2 .scale-ref-num { color: #5a9a2a; }
-.s3 .scale-ref-num { color: #c47a00; }
-.s4 .scale-ref-num { color: #c44a00; }
-.s5 .scale-ref-num { color: #b02020; }
+/* PROGRESS */
+.progress-wrap { margin-bottom: 32px; }
+.progress-label {
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  color: #999;
+  margin-bottom: 6px;
+}
+.progress-bg { height: 3px; background: #ddd; }
+.progress-fill { height: 3px; background: #1a1a1a; transition: width 0.3s; }
 
 /* SECTION */
 .section { margin-bottom: 50px; }
-.section-header { padding: 16px 20px; border-left: 4px solid #1a1a1a; margin-bottom: 24px; }
-.section-header h2 { font-size: 18px; font-weight: bold; margin-bottom: 4px; color: #1a1a1a; }
-.section-header p { font-size: 13px; color: #666; }
-.section-header .hz-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
-.hz-tag { font-size: 11px; padding: 2px 8px; border: 1px solid #aaa; color: #555; font-family: 'Courier New', monospace; }
+.section-tag {
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #999;
+  margin-bottom: 5px;
+}
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.section-desc {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+.section-filter-note {
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  color: #bbb;
+  margin-bottom: 22px;
+  padding: 6px 10px;
+  border-left: 2px solid #ddd;
+}
 
-.sec-a .section-header { border-left-color: #b02020; }
-.sec-b .section-header { border-left-color: #185a9a; }
-.sec-c .section-header { border-left-color: #2a6a10; }
-.sec-d .section-header { border-left-color: #b05a00; }
-
-.divider { border: none; border-top: 1px solid #d0c9bc; margin: 40px 0; }
+.divider {
+  border: none;
+  border-top: 1px solid #d0c9bc;
+  margin: 40px 0;
+}
 
 /* QUESTION */
-.q { background: #fff; border: 1px solid #d0c9bc; padding: 20px; margin-bottom: 14px; }
-.q-code { font-size: 10px; font-family: 'Courier New', monospace; color: #bbb; display: block; margin-bottom: 6px; }
-.q-text { font-size: 14px; font-weight: bold; line-height: 1.5; margin-bottom: 6px; color: #1a1a1a; }
+.q {
+  background: #fff;
+  border: 1px solid #d0c9bc;
+  padding: 20px;
+  margin-bottom: 14px;
+}
+.q-code {
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  color: #ccc;
+  display: block;
+  margin-bottom: 6px;
+}
+.q-text {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+.q-hint {
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+  margin-bottom: 14px;
+  line-height: 1.5;
+  border-left: 2px solid #e8e3da;
+  padding-left: 10px;
+}
 
-/* INTENSITY BUTTONS */
-.int-label { font-size: 10px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
-.int-row { display: flex; gap: 0; border: 1px solid #d0c9bc; width: fit-content; margin-bottom: 4px; }
-.int-btn {
-  width: 52px; height: 46px;
-  border: none; border-right: 1px solid #d0c9bc;
+/* CHOICE */
+.choice-list { display: flex; flex-direction: column; gap: 7px; }
+.choice-btn {
+  padding: 10px 14px;
+  border: 1px solid #d0c9bc;
   background: #f4f1ec;
-  font-size: 15px; font-weight: bold; font-family: Georgia, serif;
-  cursor: pointer; transition: background 0.1s;
-  color: #1a1a1a; -webkit-appearance: none;
+  text-align: left;
+  font-size: 13px;
+  font-family: Georgia, serif;
+  cursor: pointer;
+  line-height: 1.4;
+  transition: background 0.1s;
 }
-.int-btn:last-child { border-right: none; }
-.int-btn:hover { background: #e8e3da; }
-.int-btn.v1 { background: #d8f0c0; color: #2a5a0a; }
-.int-btn.v2 { background: #c8e898; color: #2a5a0a; }
-.int-btn.v3 { background: #ffe8a0; color: #7a4a00; }
-.int-btn.v4 { background: #ffc880; color: #8a2a00; }
-.int-btn.v5 { background: #ffb0b0; color: #8a1010; }
-.int-ends { display: flex; justify-content: space-between; width: 260px; font-size: 10px; color: #aaa; font-family: 'Courier New', monospace; margin-bottom: 5px; }
-.int-desc { font-size: 12px; font-style: italic; min-height: 18px; color: #888; }
+.choice-btn:hover { background: #e8e3da; }
+.choice-btn.sel { background: #1a1a1a; color: #f4f1ec; border-color: #1a1a1a; }
 
-/* BUCKET */
-.bucket { background: #fff; border: 1px dashed #bbb; padding: 20px; margin-top: 8px; }
-.bucket label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 10px; color: #1a1a1a; }
-.bucket textarea {
-  width: 100%; min-height: 70px; padding: 10px 12px;
-  font-size: 13px; font-family: Georgia, serif;
-  border: 1px solid #d0c9bc; background: #f9f7f3;
-  color: #1a1a1a; resize: vertical; -webkit-appearance: none;
+/* SCALE */
+.scale-instr {
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #aaa;
+  margin-bottom: 8px;
 }
-.bucket textarea:focus { outline: 2px solid #1a1a1a; }
-.bucket textarea::placeholder { color: #aaa; }
+.scale-row {
+  display: flex;
+  gap: 0;
+  border: 1px solid #d0c9bc;
+  width: fit-content;
+  margin-bottom: 4px;
+}
+.scale-btn {
+  width: 52px; height: 46px;
+  border: none;
+  border-right: 1px solid #d0c9bc;
+  background: #f4f1ec;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: Georgia, serif;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.scale-btn:last-child { border-right: none; }
+.scale-btn:hover { background: #e8e3da; }
+.scale-btn.v1 { background: #d8f0c0; color: #2a5a0a; }
+.scale-btn.v2 { background: #c8e898; color: #2a5a0a; }
+.scale-btn.v3 { background: #ffe8a0; color: #7a4a00; }
+.scale-btn.v4 { background: #ffc880; color: #8a2a00; }
+.scale-btn.v5 { background: #ffb0b0; color: #8a1010; }
+.scale-ends {
+  display: flex;
+  justify-content: space-between;
+  width: 260px;
+  font-size: 10px;
+  color: #aaa;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 5px;
+}
+.scale-desc {
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+  min-height: 18px;
+}
 
-/* ONE THING */
-.one-thing { background: #1a1a1a; color: #f4f1ec; padding: 28px; margin-bottom: 32px; }
-.one-thing h2 { font-size: 19px; font-weight: normal; line-height: 1.5; margin-bottom: 10px; }
-.one-thing p { font-size: 13px; color: #aaa; margin-bottom: 16px; line-height: 1.6; }
-.one-thing textarea {
-  width: 100%; min-height: 90px; padding: 12px;
-  font-size: 13px; font-family: Georgia, serif;
-  background: #2e2e2e; border: 1px solid #555;
-  color: #f4f1ec; resize: vertical; -webkit-appearance: none;
+/* NPS */
+.nps-row {
+  display: flex;
+  gap: 0;
+  border: 1px solid #d0c9bc;
+  width: fit-content;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
 }
-.one-thing textarea:focus { outline: 2px solid #f4f1ec; }
-.one-thing textarea::placeholder { color: #666; }
-.one-thing small { display: block; font-size: 11px; color: #666; margin-top: 8px; font-style: italic; }
+.nps-btn {
+  width: 42px; height: 38px;
+  border: none;
+  border-right: 1px solid #d0c9bc;
+  background: #f4f1ec;
+  font-size: 13px;
+  font-family: Georgia, serif;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.nps-btn:last-child { border-right: none; }
+.nps-btn:hover { background: #e8e3da; }
+.nps-btn.sel { background: #1a1a1a; color: #f4f1ec; }
+.nps-ends {
+  display: flex;
+  justify-content: space-between;
+  width: 462px;
+  font-size: 10px;
+  color: #aaa;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 5px;
+}
+
+/* OPEN */
+.open-input {
+  width: 100%;
+  padding: 11px 12px;
+  font-size: 13px;
+  font-family: Georgia, serif;
+  border: 1px solid #d0c9bc;
+  background: #f9f7f3;
+  color: #1a1a1a;
+  resize: vertical;
+  min-height: 70px;
+}
+.open-input:focus { outline: 2px solid #1a1a1a; }
+.open-input.tall { min-height: 90px; }
+
+/* SPECIAL CARDS */
+.blind-card {
+  background: #fff;
+  border: 1px solid #d0c9bc;
+  border-left: 3px solid #1a1a1a;
+  padding: 20px;
+  margin-bottom: 14px;
+}
+.blind-label {
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  margin-bottom: 6px;
+}
+.blind-q {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+.blind-hint {
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.price-q {
+  background: #fff;
+  border: 1px solid #d0c9bc;
+  border-left: 3px solid #2a5a0a;
+  padding: 20px;
+  margin-bottom: 14px;
+}
 
 /* SUBMIT */
 .submit-btn {
-  width: 100%; padding: 16px; background: #1a1a1a; color: #f4f1ec; border: none;
-  font-size: 15px; font-family: Georgia, serif; cursor: pointer;
-  letter-spacing: 0.05em; transition: background 0.15s; -webkit-appearance: none;
+  width: 100%;
+  padding: 16px;
+  background: #1a1a1a;
+  color: #f4f1ec;
+  border: none;
+  font-size: 15px;
+  font-family: Georgia, serif;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  margin-top: 32px;
+  transition: background 0.15s;
 }
 .submit-btn:hover { background: #333; }
-.submit-btn:disabled { background: #aaa; cursor: not-allowed; }
-.sending-msg { display: none; text-align: center; padding: 14px; font-size: 13px; color: #888; font-style: italic; }
-.error-msg { display: none; background: #fff0f0; border: 1px solid #f7c1c1; padding: 12px 16px; font-size: 13px; color: #8a1010; margin-top: 12px; text-align: center; }
-.submit-note { font-size: 12px; color: #aaa; text-align: center; margin-top: 10px; font-style: italic; }
+.submit-note {
+  font-size: 12px;
+  color: #aaa;
+  text-align: center;
+  margin-top: 10px;
+  font-style: italic;
+}
 
 /* SUCCESS */
-.success { display: none; text-align: center; padding: 80px 20px; }
-.success h2 { font-size: 22px; font-weight: normal; margin-bottom: 12px; color: #1a1a1a; }
+.success {
+  display: none;
+  text-align: center;
+  padding: 80px 20px;
+}
+.success h2 { font-size: 22px; font-weight: normal; margin-bottom: 12px; }
 .success p { font-size: 14px; color: #666; line-height: 1.7; }
 
 @media (max-width: 500px) {
-  body { padding: 24px 16px 60px; }
-  .int-btn { width: 44px; height: 42px; font-size: 13px; }
-  .int-ends { width: 220px; }
-  .form-header h1 { font-size: 20px; }
+  .scale-btn { width: 44px; height: 42px; font-size: 13px; }
+  .scale-ends { width: 220px; }
+  .nps-btn { width: 38px; height: 36px; font-size: 12px; }
+  .nps-ends { width: 418px; }
 }
 </style>
 </head>
 <body>
 <div class="container" id="main">
 
+  <!-- HEADER -->
   <div class="form-header">
-    <h1>Formulario CCE<br>Problemas generales</h1>
-    <p>Para cada problema, marca cuánto te frena realmente. No hay respuestas correctas. La respuesta más honesta es la más útil. Menos de 5 minutos.</p>
-    <span class="time-badge">5 minutos — 4 categorías</span>
+    <h1>Cuestionario de Feedback<br>El Reto Corsair Connect</h1>
+    <p>Este formulario nos ayuda a mejorar el sistema del Reto. Tus respuestas honestas, aunque sean negativas, son las mas valiosas. No hay respuestas correctas ni incorrectas.</p>
+    <span class="time-badge">8 minutos — 11 fases</span>
   </div>
 
-  <!-- ESCALA REFERENCIA -->
-  <div class="scale-ref">
-    <strong>Escala de referencia</strong>
-    <div class="scale-ref-row">
-      <div class="scale-ref-cell s1"><span class="scale-ref-num">1</span>Duda pequeña</div>
-      <div class="scale-ref-cell s2"><span class="scale-ref-num">2</span>Me ralentiza</div>
-      <div class="scale-ref-cell s3"><span class="scale-ref-num">3</span>Freno importante</div>
-      <div class="scale-ref-cell s4"><span class="scale-ref-num">4</span>Me paraliza</div>
-      <div class="scale-ref-cell s5"><span class="scale-ref-num">5</span>Abandono total</div>
-    </div>
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-label" id="progLabel">Introduccion</div>
+    <div class="progress-bg"><div class="progress-fill" id="progFill" style="width:5%"></div></div>
   </div>
 
-  <!-- CATEGORIA A -->
-  <div class="section sec-a">
-    <div class="section-header">
-      <h2>A — Dudas sobre el modelo y la legalidad</h2>
-      <p>Si el negocio es legítimo, legal y transparente</p>
-      <div class="hz-tags">
-        <span class="hz-tag">Probabilidad de logro</span>
-        <span class="hz-tag">Resultado ideal</span>
+  <!-- ======================== -->
+  <!-- INTRO -->
+  <!-- ======================== -->
+  <div class="section" id="s-intro">
+    <div class="section-tag">Introduccion</div>
+    <div class="section-title">Cuatro preguntas rapidas para empezar</div>
+    <div class="section-desc">Nos ayudan a clasificar bien tus respuestas.</div>
+
+    <div class="q">
+      <span class="q-code">P0a</span>
+      <p class="q-text">¿Cual es tu estado actual con el sistema?</p>
+      <p class="q-hint">Tu respuesta determina que secciones son relevantes para ti.</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p0a')">Estoy activo — complete el Reto 1</button>
+        <button class="choice-btn" onclick="pick(this,'p0a')">Estoy activo — estoy en proceso del Reto 1</button>
+        <button class="choice-btn" onclick="pick(this,'p0a')">Lo compre pero no llegue a empezar</button>
+        <button class="choice-btn" onclick="pick(this,'p0a')">Lo compre y lo deje antes de terminarlo</button>
+        <button class="choice-btn" onclick="pick(this,'p0a')">Solo lo estoy valorando — aun no compre</button>
       </div>
     </div>
 
     <div class="q">
-      <span class="q-code">A1</span>
-      <p class="q-text">"He buscado en internet y dicen que es una estafa"</p>
-      <div class="int-label">Cuánto te frena — marca tu nivel</div>
-      <div class="int-row">
-        <button class="int-btn" onclick="pick(this,'a1',1)">1</button>
-        <button class="int-btn" onclick="pick(this,'a1',2)">2</button>
-        <button class="int-btn" onclick="pick(this,'a1',3)">3</button>
-        <button class="int-btn" onclick="pick(this,'a1',4)">4</button>
-        <button class="int-btn" onclick="pick(this,'a1',5)">5</button>
-      </div>
-      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="int-desc" id="d-a1"></div>
+      <span class="q-code">P0b</span>
+      <p class="q-text">¿En que pais te encuentras?</p>
+      <input type="text" class="open-input" style="min-height:auto;padding:10px 12px;font-size:13px" placeholder="Escribe tu pais...">
     </div>
 
     <div class="q">
-      <span class="q-code">A2</span>
-      <p class="q-text">"¿Esto es como Herbalife? ¿Es un esquema piramidal?"</p>
-      <div class="int-label">Cuánto te frena</div>
-      <div class="int-row">
-        <button class="int-btn" onclick="pick(this,'a2',1)">1</button>
-        <button class="int-btn" onclick="pick(this,'a2',2)">2</button>
-        <button class="int-btn" onclick="pick(this,'a2',3)">3</button>
-        <button class="int-btn" onclick="pick(this,'a2',4)">4</button>
-        <button class="int-btn" onclick="pick(this,'a2',5)">5</button>
+      <span class="q-code">P0c</span>
+      <p class="q-text">¿Cuantos anos tienes?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p0c')">Menos de 35</button>
+        <button class="choice-btn" onclick="pick(this,'p0c')">Entre 35 y 44</button>
+        <button class="choice-btn" onclick="pick(this,'p0c')">Entre 45 y 54</button>
+        <button class="choice-btn" onclick="pick(this,'p0c')">55 o mas</button>
       </div>
-      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="int-desc" id="d-a2"></div>
     </div>
 
     <div class="q">
-      <span class="q-code">A3</span>
-      <p class="q-text">"¿Puedo perder mi dinero? ¿Qué pasa si la empresa cierra?"</p>
-      <div class="int-label">Cuánto te frena</div>
-      <div class="int-row">
-        <button class="int-btn" onclick="pick(this,'a3',1)">1</button>
-        <button class="int-btn" onclick="pick(this,'a3',2)">2</button>
-        <button class="int-btn" onclick="pick(this,'a3',3)">3</button>
-        <button class="int-btn" onclick="pick(this,'a3',4)">4</button>
-        <button class="int-btn" onclick="pick(this,'a3',5)">5</button>
+      <span class="q-code">P0d</span>
+      <p class="q-text">¿Como llegaste a conocer el negocio de Corsair Connect?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p0d')">Me lo presento un amigo o familiar</button>
+        <button class="choice-btn" onclick="pick(this,'p0d')">Vi un anuncio en redes sociales</button>
+        <button class="choice-btn" onclick="pick(this,'p0d')">Lo encontre buscando en internet</button>
+        <button class="choice-btn" onclick="pick(this,'p0d')">Me lo presento alguien que no conozco bien</button>
       </div>
-      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="int-desc" id="d-a3"></div>
-    </div>
-
-    <div class="bucket">
-      <label>¿Qué otra duda sobre la legitimidad del negocio te quita el sueño y no hemos mencionado?</label>
-      <textarea id="bucket_a" placeholder="Escribe con total libertad..."></textarea>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- CATEGORIA B -->
-  <div class="section sec-b">
-    <div class="section-header">
-      <h2>B — Barreras técnicas y operativas</h2>
-      <p>Usar la plataforma, cobrar comisiones y gestionar el negocio</p>
-      <div class="hz-tags">
-        <span class="hz-tag">Esfuerzo y sacrificio</span>
-        <span class="hz-tag">Tiempo al resultado</span>
+  <!-- ======================== -->
+  <!-- FASE 1: CAPTACION -->
+  <!-- ======================== -->
+  <div class="section" id="s-f1">
+    <div class="section-tag">Fase 1</div>
+    <div class="section-title">Cuando te presentaron el negocio por primera vez</div>
+    <div class="section-desc">Las primeras impresiones son las mas dificiles de cambiar. Queremos saber exactamente que paso por tu cabeza.</div>
+    <div class="section-filter-note">Todas las personas responden esta seccion</div>
+
+    <div class="q">
+      <span class="q-code">P1a</span>
+      <p class="q-text">¿Que fue lo primero que pensaste cuando alguien te presento esta oportunidad?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p1a')">Me parecio interesante y quise saber mas</button>
+        <button class="choice-btn" onclick="pick(this,'p1a')">Me genero curiosidad pero con muchas dudas</button>
+        <button class="choice-btn" onclick="pick(this,'p1a')">Me genero desconfianza inmediata</button>
+        <button class="choice-btn" onclick="pick(this,'p1a')">Me parecio un multinivel o esquema piramidal</button>
+        <button class="choice-btn" onclick="pick(this,'p1a')">No entendi de que se trataba</button>
       </div>
     </div>
 
     <div class="q">
-      <span class="q-code">B1</span>
-      <p class="q-text">"No entiendo cómo comprar paquetes en Corsair Connect ni cómo funciona el pago con USDC"</p>
-      <div class="int-label">Cuánto te frena</div>
-      <div class="int-row">
-        <button class="int-btn" onclick="pick(this,'b1',1)">1</button>
-        <button class="int-btn" onclick="pick(this,'b1',2)">2</button>
-        <button class="int-btn" onclick="pick(this,'b1',3)">3</button>
-        <button class="int-btn" onclick="pick(this,'b1',4)">4</button>
-        <button class="int-btn" onclick="pick(this,'b1',5)">5</button>
+      <span class="q-code">P1b</span>
+      <p class="q-text">¿Que tan dificil te resulto entender que ibas a conseguir exactamente con el sistema?</p>
+      <p class="q-hint">1 = Lo entendi enseguida · 5 = No llegue a entenderlo del todo</p>
+      <div class="scale-instr">Marca tu nivel</div>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p1b')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p1b')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p1b')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p1b')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p1b')">5</button>
       </div>
-      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="int-desc" id="d-b1"></div>
+      <div class="scale-ends"><span>Lo entendi enseguida</span><span>No lo entendi</span></div>
+      <div class="scale-desc" id="sd-p1b"></div>
     </div>
 
     <div class="q">
-      <span class="q-code">B2</span>
-      <p class="q-text">"No sé cómo retirar mi dinero. No entiendo dónde están mis comisiones ni cómo cobrarlas"</p>
-      <div class="int-label">Cuánto te frena</div>
-      <div class="int-row">
-        <button class="int-btn" onclick="pick(this,'b2',1)">1</button>
-        <button class="int-btn" onclick="pick(this,'b2',2)">2</button>
-        <button class="int-btn" onclick="pick(this,'b2',3)">3</button>
-        <button class="int-btn" onclick="pick(this,'b2',4)">4</button>
-        <button class="int-btn" onclick="pick(this,'b2',5)">5</button>
+      <span class="q-code">P1c</span>
+      <p class="q-text">La persona que te presento el negocio, ¿como la valorarias en terminos de credibilidad?</p>
+      <p class="q-hint">1 = Confianza total · 5 = Me genero desconfianza</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p1c')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p1c')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p1c')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p1c')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p1c')">5</button>
       </div>
-      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="int-desc" id="d-b2"></div>
-    </div>
-
-    <div class="q">
-      <span class="q-code">B3</span>
-      <p class="q-text">"Me siento perdido en la plataforma — no sé qué pasos seguir, qué hacer primero ni cómo avanzar"</p>
-      <div class="int-label">Cuánto te frena</div>
-      <div class="int-row">
-        <button class="int-btn" onclick="pick(this,'b3',1)">1</button>
-        <button class="int-btn" onclick="pick(this,'b3',2)">2</button>
-        <button class="int-btn" onclick="pick(this,'b3',3)">3</button>
-        <button class="int-btn" onclick="pick(this,'b3',4)">4</button>
-        <button class="int-btn" onclick="pick(this,'b3',5)">5</button>
-      </div>
-      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="int-desc" id="d-b3"></div>
-    </div>
-
-    <div class="bucket">
-      <label>¿Qué otra barrera técnica te quita el sueño y no hemos mencionado?</label>
-      <textarea id="bucket_b" placeholder="Un botón que no funciona, un paso que no entiendes, algo que nadie te explicó..."></textarea>
+      <div class="scale-ends"><span>Confianza total</span><span>Desconfianza</span></div>
+      <div class="scale-desc" id="sd-p1c"></div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- CATEGORIA C -->
-  <div class="section sec-c">
-    <div class="section-header">
-      <h2>C — Dudas sobre los créditos de plástico (CSR26)</h2>
-      <p>Qué son, si tienen valor real y cómo usarlos o venderlos</p>
-      <div class="hz-tags">
-        <span class="hz-tag">Resultado ideal</span>
-        <span class="hz-tag">Probabilidad de logro</span>
-        <span class="hz-tag">Tiempo al resultado</span>
+  <!-- ======================== -->
+  <!-- FASE 2: DECISION $17 -->
+  <!-- ======================== -->
+  <div class="section" id="s-f2">
+    <div class="section-tag">Fase 2</div>
+    <div class="section-title">La decision de pagar $17</div>
+    <div class="section-desc">Ver la presentacion y decidir si acceder al sistema.</div>
+
+    <div class="q">
+      <span class="q-code">P2a</span>
+      <p class="q-text">Antes de comprar los $17, ¿cual de estas frases describe mejor lo que sentiste?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p2a')">"$17 es muy barato, lo pruebo sin dudar"</button>
+        <button class="choice-btn" onclick="pick(this,'p2a')">"Tan barato me genero desconfianza sobre si era serio"</button>
+        <button class="choice-btn" onclick="pick(this,'p2a')">"No eran $17 lo que me frenaba, sino no entender bien que era"</button>
+        <button class="choice-btn" onclick="pick(this,'p2a')">"Tenia claro que no iba a funcionar para mi"</button>
+        <button class="choice-btn" onclick="pick(this,'p2a')">"Me convencio el sistema y lo que prometia"</button>
       </div>
     </div>
 
     <div class="q">
-      <span class="q-code">C1</span>
-      <p class="q-text">"¿A quién le vendo mis CSR26? ¿Hay un mercado real o me los quedo para siempre?"</p>
-      <div class="int-label">Cuánto te frena</div>
-      <div class="int-row">
-        <button class="int-btn" onclick="pick(this,'c1',1)">1</button>
-        <button class="int-btn" onclick="pick(this,'c1',2)">2</button>
-        <button class="int-btn" onclick="pick(this,'c1',3)">3</button>
-        <button class="int-btn" onclick="pick(this,'c1',4)">4</button>
-        <button class="int-btn" onclick="pick(this,'c1',5)">5</button>
+      <span class="q-code">P2b</span>
+      <p class="q-text">¿Cuanto te costo creer que podias conseguir $600 en 14 dias sin experiencia en ventas?</p>
+      <p class="q-hint">1 = Lo crei desde el principio · 5 = No me lo crei</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p2b')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p2b')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p2b')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p2b')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p2b')">5</button>
       </div>
-      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="int-desc" id="d-c1"></div>
+      <div class="scale-ends"><span>Lo crei</span><span>No me lo crei</span></div>
+      <div class="scale-desc" id="sd-p2b"></div>
     </div>
 
     <div class="q">
-      <span class="q-code">C2</span>
-      <p class="q-text">"¿Se elimina el plástico de verdad? ¿Cómo sé que no es un invento para justificar el negocio?"</p>
-      <div class="int-label">Cuánto te frena</div>
-      <div class="int-row">
-        <button class="int-btn" onclick="pick(this,'c2',1)">1</button>
-        <button class="int-btn" onclick="pick(this,'c2',2)">2</button>
-        <button class="int-btn" onclick="pick(this,'c2',3)">3</button>
-        <button class="int-btn" onclick="pick(this,'c2',4)">4</button>
-        <button class="int-btn" onclick="pick(this,'c2',5)">5</button>
-      </div>
-      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="int-desc" id="d-c2"></div>
-    </div>
-
-    <div class="q">
-      <span class="q-code">C3</span>
-      <p class="q-text">"¿Cuándo puedo vender mis CSR26? ¿Hay bloqueo temporal? ¿Cuánto tengo que esperar para recuperar mi dinero?"</p>
-      <div class="int-label">Cuánto te frena</div>
-      <div class="int-row">
-        <button class="int-btn" onclick="pick(this,'c3',1)">1</button>
-        <button class="int-btn" onclick="pick(this,'c3',2)">2</button>
-        <button class="int-btn" onclick="pick(this,'c3',3)">3</button>
-        <button class="int-btn" onclick="pick(this,'c3',4)">4</button>
-        <button class="int-btn" onclick="pick(this,'c3',5)">5</button>
-      </div>
-      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="int-desc" id="d-c3"></div>
-    </div>
-
-    <div class="bucket">
-      <label>¿Qué otra duda sobre los créditos de plástico o el servicio de eliminación te quita el sueño?</label>
-      <textarea id="bucket_c" placeholder="Puede ser algo que nadie te ha respondido satisfactoriamente sobre los CSR26..."></textarea>
+      <span class="q-code">P2c</span>
+      <p class="q-text">¿Que fue lo que finalmente te hizo pasar — o no pasar — por caja?</p>
+      <p class="q-hint">Tu respuesta mas honesta es la mas util.</p>
+      <textarea class="open-input" placeholder="Cuéntanos con libertad..."></textarea>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- CATEGORIA D -->
-  <div class="section sec-d">
-    <div class="section-header">
-      <h2>D — Capacidad personal y social</h2>
-      <p>Creencias sobre tu propia capacidad de vender, explicar y convencer a otros</p>
-      <div class="hz-tags">
-        <span class="hz-tag">Esfuerzo y sacrificio</span>
-        <span class="hz-tag">Probabilidad de logro</span>
+  <!-- ======================== -->
+  <!-- FASE 3: ONBOARDING -->
+  <!-- ======================== -->
+  <div class="section" id="s-f3">
+    <div class="section-tag">Fase 3</div>
+    <div class="section-title">Las primeras horas tras comprar</div>
+    <div class="section-desc">Acceder a la plataforma y entender que habia que hacer.</div>
+    <div class="section-filter-note">Si aun no has comprado, puedes saltar esta seccion</div>
+
+    <div class="q">
+      <span class="q-code">P3a</span>
+      <p class="q-text">Al acceder a la plataforma por primera vez, ¿cual fue tu reaccion?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p3a')">Supe exactamente que hacer — empece de inmediato</button>
+        <button class="choice-btn" onclick="pick(this,'p3a')">Tarde un rato en orientarme pero lo consegui</button>
+        <button class="choice-btn" onclick="pick(this,'p3a')">Me senti perdido y tuve que pedir ayuda</button>
+        <button class="choice-btn" onclick="pick(this,'p3a')">Me abrume y cerre la plataforma</button>
       </div>
     </div>
 
     <div class="q">
-      <span class="q-code">D1</span>
-      <p class="q-text">"Yo no sé vender. Me da vergüenza hablar de dinero o de negocios. Tengo miedo al rechazo."</p>
-      <div class="int-label">Cuánto te frena</div>
-      <div class="int-row">
-        <button class="int-btn" onclick="pick(this,'d1',1)">1</button>
-        <button class="int-btn" onclick="pick(this,'d1',2)">2</button>
-        <button class="int-btn" onclick="pick(this,'d1',3)">3</button>
-        <button class="int-btn" onclick="pick(this,'d1',4)">4</button>
-        <button class="int-btn" onclick="pick(this,'d1',5)">5</button>
+      <span class="q-code">P3b</span>
+      <p class="q-text">¿Que tan dificil fue entender el modelo de negocio completo — como se gana dinero, los creditos, el plan de afiliados?</p>
+      <p class="q-hint">1 = Cristalino desde el principio · 5 = Nunca lo entendi del todo</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p3b')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p3b')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p3b')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p3b')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p3b')">5</button>
       </div>
-      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="int-desc" id="d-d1"></div>
+      <div class="scale-ends"><span>Muy claro</span><span>Nunca lo entendi</span></div>
+      <div class="scale-desc" id="sd-p3b"></div>
     </div>
 
     <div class="q">
-      <span class="q-code">D2</span>
-      <p class="q-text">"No sé cómo explicar el negocio. Cuando lo intento, la gente no lo entiende o me dice que no le interesa."</p>
-      <div class="int-label">Cuánto te frena</div>
-      <div class="int-row">
-        <button class="int-btn" onclick="pick(this,'d2',1)">1</button>
-        <button class="int-btn" onclick="pick(this,'d2',2)">2</button>
-        <button class="int-btn" onclick="pick(this,'d2',3)">3</button>
-        <button class="int-btn" onclick="pick(this,'d2',4)">4</button>
-        <button class="int-btn" onclick="pick(this,'d2',5)">5</button>
+      <span class="q-code">P3c</span>
+      <p class="q-text">La plataforma de Corsair Connect — USDC, wallets, transferencias — ¿en que medida fue una barrera para ti?</p>
+      <p class="q-hint">1 = Ninguna barrera · 5 = Me bloqueo completamente</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p3c')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p3c')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p3c')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p3c')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p3c')">5</button>
       </div>
-      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="int-desc" id="d-d2"></div>
+      <div class="scale-ends"><span>Sin barrera</span><span>Me bloqueo</span></div>
+      <div class="scale-desc" id="sd-p3c"></div>
     </div>
 
     <div class="q">
-      <span class="q-code">D3</span>
-      <p class="q-text">"No tengo dinero para invertir ni para comprar el paquete mínimo. Necesito ganar dinero antes de poder gastar."</p>
-      <div class="int-label">Cuánto te frena</div>
-      <div class="int-row">
-        <button class="int-btn" onclick="pick(this,'d3',1)">1</button>
-        <button class="int-btn" onclick="pick(this,'d3',2)">2</button>
-        <button class="int-btn" onclick="pick(this,'d3',3)">3</button>
-        <button class="int-btn" onclick="pick(this,'d3',4)">4</button>
-        <button class="int-btn" onclick="pick(this,'d3',5)">5</button>
-      </div>
-      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="int-desc" id="d-d3"></div>
-    </div>
-
-    <div class="bucket">
-      <label>¿Qué creencia sobre ti mismo o tu entorno te impide avanzar y no hemos mencionado aquí?</label>
-      <textarea id="bucket_d" placeholder="Puede ser algo que sientes pero que nunca has verbalizado sobre por qué esto no funcionará para alguien como tú..."></textarea>
+      <span class="q-code">P3d</span>
+      <p class="q-text">¿Que es lo primero que cambiarias del proceso de bienvenida?</p>
+      <textarea class="open-input" placeholder="Escribe tu sugerencia..."></textarea>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- ONE THING -->
-  <div class="one-thing">
-    <h2>Si mañana hiciéramos una videollamada para solucionar solo UN problema que te impide avanzar... ¿cuál sería?</h2>
-    <p>Lo primero que venga a tu cabeza es lo correcto. No tiene que ser racional. Puede ser un miedo, una duda, un bloqueo o algo específico que no has podido resolver por tu cuenta.</p>
-    <textarea id="one_thing" placeholder="Escribe aquí tu mayor problema o duda..."></textarea>
-    <small>Esta respuesta es la más importante de todo el formulario.</small>
+  <!-- ======================== -->
+  <!-- FASE 4: LISTA CONTACTOS -->
+  <!-- ======================== -->
+  <div class="section" id="s-f4">
+    <div class="section-tag">Fase 4</div>
+    <div class="section-title">Construir la lista de contactos</div>
+    <div class="section-desc">Las personas de tu entorno que contactarias para presentarles el negocio.</div>
+
+    <div class="q">
+      <span class="q-code">P4a</span>
+      <p class="q-text">¿Conseguiste hacer tu lista de 100 contactos?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p4a')">Si, la hice completa</button>
+        <button class="choice-btn" onclick="pick(this,'p4a')">Si, pero con menos contactos de los que deberia</button>
+        <button class="choice-btn" onclick="pick(this,'p4a')">Empece pero no la termine</button>
+        <button class="choice-btn" onclick="pick(this,'p4a')">No llegue a hacerla</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P4b</span>
+      <p class="q-text">¿Cuanto te afecto la preocupacion de molestar o incomodar a tus amigos y familia?</p>
+      <p class="q-hint">1 = No me preocupo · 5 = Fue uno de mis mayores frenos</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p4b')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p4b')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p4b')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p4b')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p4b')">5</button>
+      </div>
+      <div class="scale-ends"><span>No me preocupo</span><span>Freno importante</span></div>
+      <div class="scale-desc" id="sd-p4b"></div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P4c</span>
+      <p class="q-text">¿En que medida sentiste que no tenias suficientes contactos relevantes?</p>
+      <p class="q-hint">1 = Tenia mas que suficiente · 5 = Senti que no me quedaba nadie a quien contactar</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p4c')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p4c')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p4c')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p4c')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p4c')">5</button>
+      </div>
+      <div class="scale-ends"><span>Mas que suficiente</span><span>Sin contactos</span></div>
+      <div class="scale-desc" id="sd-p4c"></div>
+    </div>
   </div>
 
-  <button class="submit-btn" id="submitBtn" onclick="enviar()">Enviar mis respuestas</button>
-  <div class="sending-msg" id="sendingMsg">Enviando tus respuestas...</div>
-  <div class="error-msg" id="errorMsg">Hubo un error al enviar. Por favor inténtalo de nuevo.</div>
-  <p class="submit-note">Tus respuestas son anónimas y se usan solo para mejorar el sistema.</p>
+  <hr class="divider">
+
+  <!-- ======================== -->
+  <!-- FASE 5: CONTACTAR -->
+  <!-- ======================== -->
+  <div class="section" id="s-f5">
+    <div class="section-tag">Fase 5</div>
+    <div class="section-title">Enviar los primeros mensajes</div>
+    <div class="section-desc">Usar el script y contactar a las personas de tu lista.</div>
+
+    <div class="q">
+      <span class="q-code">P5a</span>
+      <p class="q-text">A la hora de enviar los primeros mensajes, ¿cual fue tu mayor barrera?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p5a')">El miedo al rechazo o a hacer el ridiculo</button>
+        <button class="choice-btn" onclick="pick(this,'p5a')">El script no sonaba natural con mi forma de hablar</button>
+        <button class="choice-btn" onclick="pick(this,'p5a')">No sabia como responder cuando me preguntaban mas detalles</button>
+        <button class="choice-btn" onclick="pick(this,'p5a')">Mis contactos lo descartaban antes de ver el video</button>
+        <button class="choice-btn" onclick="pick(this,'p5a')">No tuve ninguna barrera especial</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P5b</span>
+      <p class="q-text">¿Cuanto te costo mantener la energia y seguir enviando mensajes tras los primeros rechazos?</p>
+      <p class="q-hint">1 = No me afectaron · 5 = Me desanime y lo deje</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p5b')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p5b')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p5b')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p5b')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p5b')">5</button>
+      </div>
+      <div class="scale-ends"><span>Sin efecto</span><span>Me desanime</span></div>
+      <div class="scale-desc" id="sd-p5b"></div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P5c</span>
+      <p class="q-text">¿Que tan util fue el script de mensajes tal como estaba escrito?</p>
+      <p class="q-hint">1 = Muy util, lo use tal cual · 5 = No me servia</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p5c')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p5c')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p5c')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p5c')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p5c')">5</button>
+      </div>
+      <div class="scale-ends"><span>Muy util</span><span>No me servia</span></div>
+      <div class="scale-desc" id="sd-p5c"></div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P5d</span>
+      <p class="q-text">Cuando alguien te dijo que le parecia una estafa o un multinivel, ¿que hiciste?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p5d')">Use el guion de objeciones y lo resolvi</button>
+        <button class="choice-btn" onclick="pick(this,'p5d')">Intente explicarlo pero no supe como</button>
+        <button class="choice-btn" onclick="pick(this,'p5d')">Cambie de tema o corte la conversacion</button>
+        <button class="choice-btn" onclick="pick(this,'p5d')">No tuve esta situacion</button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======================== -->
+  <!-- FASE 6: VIDEO -->
+  <!-- ======================== -->
+  <div class="section" id="s-f6">
+    <div class="section-tag">Fase 6</div>
+    <div class="section-title">Cuando tus contactos veian el video</div>
+    <div class="section-desc">El contacto recibe tu enlace y decide si ver la landing y el video.</div>
+
+    <div class="q">
+      <span class="q-code">P6a</span>
+      <p class="q-text">¿Que tan dificil te resulto conseguir que tus contactos vieran el video o la landing?</p>
+      <p class="q-hint">1 = La mayoria lo vio · 5 = Casi nadie llego a verlo</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p6a')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p6a')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p6a')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p6a')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p6a')">5</button>
+      </div>
+      <div class="scale-ends"><span>La mayoria lo vio</span><span>Casi nadie</span></div>
+      <div class="scale-desc" id="sd-p6a"></div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P6b</span>
+      <p class="q-text">¿Cual fue la razon mas comun por la que tus contactos no llegaron a ver el video?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p6b')">Dijeron que lo veerian luego y nunca lo hicieron</button>
+        <button class="choice-btn" onclick="pick(this,'p6b')">No le dieron credibilidad al enlace</button>
+        <button class="choice-btn" onclick="pick(this,'p6b')">Les parecio demasiado comercial o de ventas</button>
+        <button class="choice-btn" onclick="pick(this,'p6b')">No tuvieron tiempo</button>
+        <button class="choice-btn" onclick="pick(this,'p6b')">La mayoria si llego a verlo</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P6c</span>
+      <p class="q-text">¿Que parte del video o de la landing genero mas dudas en tus contactos?</p>
+      <textarea class="open-input" placeholder="Escribe lo que recuerdas..."></textarea>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======================== -->
+  <!-- FASE 7: VENTA -->
+  <!-- ======================== -->
+  <div class="section" id="s-f7">
+    <div class="section-tag">Fase 7</div>
+    <div class="section-title">Cuando un contacto consideraba comprar un paquete</div>
+    <div class="section-desc">El momento de decision de compra de tu contacto — 100, 350 o 1.000 EUR.</div>
+
+    <div class="q">
+      <span class="q-code">P7a</span>
+      <p class="q-text">¿Conseguiste que algun contacto comprara un paquete?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p7a')">Si, mas de uno</button>
+        <button class="choice-btn" onclick="pick(this,'p7a')">Si, uno</button>
+        <button class="choice-btn" onclick="pick(this,'p7a')">Llegaron a considerarlo pero no lo hicieron</button>
+        <button class="choice-btn" onclick="pick(this,'p7a')">No llegue a esta fase</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P7b</span>
+      <p class="q-text">Para quienes consideraron comprar pero no lo hicieron, ¿cual fue la objecion principal?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p7b')">No entendian que eran los creditos de plastico ni si tenian valor real</button>
+        <button class="choice-btn" onclick="pick(this,'p7b')">El proceso de pago con USDC o transferencia les genero desconfianza</button>
+        <button class="choice-btn" onclick="pick(this,'p7b')">Dudaban de la empresa — pedian mas pruebas</button>
+        <button class="choice-btn" onclick="pick(this,'p7b')">El precio del paquete era demasiado elevado para ellos</button>
+        <button class="choice-btn" onclick="pick(this,'p7b')">No llegue a esta fase</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P7c</span>
+      <p class="q-text">¿En que medida fue una barrera la complejidad tecnica del proceso de pago?</p>
+      <p class="q-hint">1 = No fue barrera · 5 = Mato la venta completamente</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p7c')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p7c')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p7c')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p7c')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p7c')">5</button>
+      </div>
+      <div class="scale-ends"><span>Sin barrera</span><span>Mato la venta</span></div>
+      <div class="scale-desc" id="sd-p7c"></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======================== -->
+  <!-- FASE 8: COMISIONES -->
+  <!-- ======================== -->
+  <div class="section" id="s-f8">
+    <div class="section-tag">Fase 8</div>
+    <div class="section-title">Tu primera comision</div>
+    <div class="section-desc">El momento de cobrar — o de intentar hacerlo.</div>
+    <div class="section-filter-note">Si no has llegado a esta fase, puedes pasar a la siguiente</div>
+
+    <div class="q">
+      <span class="q-code">P8a</span>
+      <p class="q-text">¿Recibiste tu primera comision?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p8a')">Si, y supe exactamente como rastrearla y retirarla</button>
+        <button class="choice-btn" onclick="pick(this,'p8a')">Si, pero el proceso de retirada fue confuso</button>
+        <button class="choice-btn" onclick="pick(this,'p8a')">La genere pero no supe como cobrarla</button>
+        <button class="choice-btn" onclick="pick(this,'p8a')">No llegue a generar ninguna comision</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P8b</span>
+      <p class="q-text">¿Que tan claro fue el proceso para retirar tu dinero de la plataforma a tu cuenta bancaria?</p>
+      <p class="q-hint">1 = Muy claro y sencillo · 5 = Imposible de entender sin ayuda externa</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p8b')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p8b')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p8b')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p8b')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p8b')">5</button>
+      </div>
+      <div class="scale-ends"><span>Muy claro</span><span>Imposible sin ayuda</span></div>
+      <div class="scale-desc" id="sd-p8b"></div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P8c</span>
+      <p class="q-text">El hecho de que el 20% de la comision se pague en creditos CSR26 en vez de efectivo, ¿como te afecto?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p8c')">No me importo — lo entendia y lo acepte</button>
+        <button class="choice-btn" onclick="pick(this,'p8c')">Me parecio bien pero no sabia que hacer con los CSR26</button>
+        <button class="choice-btn" onclick="pick(this,'p8c')">Me genero frustracion — queria todo en efectivo</button>
+        <button class="choice-btn" onclick="pick(this,'p8c')">No llegue a recibir comisiones</button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======================== -->
+  <!-- FASE 9: RETO 2 -->
+  <!-- ======================== -->
+  <div class="section" id="s-f9">
+    <div class="section-tag">Fase 9</div>
+    <div class="section-title">El Reto 2 — Referir a 3 personas</div>
+    <div class="section-desc">Conseguir que 3 personas de tu entorno completen el Reto 1.</div>
+
+    <div class="q">
+      <span class="q-code">P9a</span>
+      <p class="q-text">¿Llegaste a intentar el Reto 2?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p9a')">Si, lo complete</button>
+        <button class="choice-btn" onclick="pick(this,'p9a')">Si, lo intente pero no lo termine</button>
+        <button class="choice-btn" onclick="pick(this,'p9a')">No lo intente</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P9b</span>
+      <p class="q-text">¿Cual fue el mayor obstaculo para conseguir 3 personas que completaran el Reto 1?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p9b')">Ya habia agotado mis contactos cercanos en el Reto 1</button>
+        <button class="choice-btn" onclick="pick(this,'p9b')">Que actuaran dependia de ellas, no de mi</button>
+        <button class="choice-btn" onclick="pick(this,'p9b')">No tenia tiempo de gestionar a 3 personas a la vez</button>
+        <button class="choice-btn" onclick="pick(this,'p9b')">El rechazo anterior me dejo sin energia para seguir</button>
+        <button class="choice-btn" onclick="pick(this,'p9b')">No llegue a esta fase</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P9c</span>
+      <p class="q-text">¿En que medida te freno que el resultado dependiera de otras personas y no solo de ti?</p>
+      <p class="q-hint">1 = No me importo · 5 = Fue desmotivador y lo deje</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p9c')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p9c')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p9c')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p9c')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p9c')">5</button>
+      </div>
+      <div class="scale-ends"><span>No me importo</span><span>Me desmotivo</span></div>
+      <div class="scale-desc" id="sd-p9c"></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======================== -->
+  <!-- FASE 10 + 11: PLATAFORMA + CSR26 -->
+  <!-- ======================== -->
+  <div class="section" id="s-f10">
+    <div class="section-tag">Fase 10 y 11</div>
+    <div class="section-title">La plataforma de Corsair Connect y los creditos CSR26</div>
+    <div class="section-desc">Gestionar el negocio dentro de la plataforma y entender los creditos de plastico.</div>
+
+    <div class="q">
+      <span class="q-code">P10a</span>
+      <p class="q-text">¿Con que frecuencia usas — o usaste — la plataforma de Corsair Connect?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p10a')">La uso regularmente y la domino</button>
+        <button class="choice-btn" onclick="pick(this,'p10a')">La uso pero me cuesta navegar por ella</button>
+        <button class="choice-btn" onclick="pick(this,'p10a')">La abri pocas veces y no entendi como funciona</button>
+        <button class="choice-btn" onclick="pick(this,'p10a')">Nunca la llegue a usar</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P10b</span>
+      <p class="q-text">¿Que tan intimidante fue la plataforma para alguien sin experiencia en cripto o wallets?</p>
+      <p class="q-hint">1 = Nada intimidante · 5 = Me bloqueo por completo</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p10b')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p10b')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p10b')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p10b')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p10b')">5</button>
+      </div>
+      <div class="scale-ends"><span>Sin problema</span><span>Me bloqueo</span></div>
+      <div class="scale-desc" id="sd-p10b"></div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P10c</span>
+      <p class="q-text">¿Que seccion de Corsair Connect te resulto mas confusa?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p10c')">Ver y gestionar mis CSR26</button>
+        <button class="choice-btn" onclick="pick(this,'p10c')">Retirar dinero o comisiones</button>
+        <button class="choice-btn" onclick="pick(this,'p10c')">Comprar paquetes</button>
+        <button class="choice-btn" onclick="pick(this,'p10c')">Ver estadisticas de mi equipo</button>
+        <button class="choice-btn" onclick="pick(this,'p10c')">Todo en general fue confuso</button>
+        <button class="choice-btn" onclick="pick(this,'p10c')">Ninguna especialmente</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P11a</span>
+      <p class="q-text">¿Llegaste a entender que son los CSR26 y por que tienen valor?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'p11a')">Si, lo entendi bien y se explicarselo a otros</button>
+        <button class="choice-btn" onclick="pick(this,'p11a')">Lo entiendo en lineas generales</button>
+        <button class="choice-btn" onclick="pick(this,'p11a')">Aun no lo entiendo del todo</button>
+        <button class="choice-btn" onclick="pick(this,'p11a')">No lo llegue a entender y fue un freno</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P11b</span>
+      <p class="q-text">¿Cuanto te freno no saber a quien ni como vender tus CSR26 si quisieras hacerlo?</p>
+      <p class="q-hint">1 = No me preocupo · 5 = Una de mis mayores dudas</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p11b')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p11b')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p11b')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p11b')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p11b')">5</button>
+      </div>
+      <div class="scale-ends"><span>Sin preocupacion</span><span>Duda principal</span></div>
+      <div class="scale-desc" id="sd-p11b"></div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">P11c</span>
+      <p class="q-text">La posibilidad de que la empresa cierre y pierdas tus creditos, ¿fue una preocupacion real para ti?</p>
+      <p class="q-hint">1 = No me lo plantee · 5 = Fue un freno importante</p>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="sc(this,'p11c')">1</button>
+        <button class="scale-btn" onclick="sc(this,'p11c')">2</button>
+        <button class="scale-btn" onclick="sc(this,'p11c')">3</button>
+        <button class="scale-btn" onclick="sc(this,'p11c')">4</button>
+        <button class="scale-btn" onclick="sc(this,'p11c')">5</button>
+      </div>
+      <div class="scale-ends"><span>No lo pense</span><span>Freno importante</span></div>
+      <div class="scale-desc" id="sd-p11c"></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======================== -->
+  <!-- CIERRE: PUNTOS CIEGOS + $17 -->
+  <!-- ======================== -->
+  <div class="section" id="s-cierre">
+    <div class="section-tag">Cierre</div>
+    <div class="section-title">Las preguntas mas importantes</div>
+    <div class="section-desc">Tomate el tiempo que necesites con estas. Son las que mas nos ayudan.</div>
+
+    <div class="blind-card">
+      <div class="blind-label">Punto ciego — PC1</div>
+      <p class="blind-q">¿Hubo algun momento especifico donde sentiste que el sistema te pedia mas de lo que podias dar, o donde perdiste la fe en el resultado?</p>
+      <p class="blind-hint">Si es asi, describe que estabas haciendo, que paso y que sentiste. Sin limite de extension.</p>
+      <textarea class="open-input tall" placeholder="Tu respuesta mas honesta aqui. Puede ser un momento muy concreto o una sensacion general..."></textarea>
+    </div>
+
+    <div class="q">
+      <span class="q-code">PC2</span>
+      <p class="q-text">Si tuvieras que senalar el momento exacto en el que mas cerca estuviste de abandonar, ¿cual fue?</p>
+      <div class="choice-list">
+        <button class="choice-btn" onclick="pick(this,'pc2')">Cuando intente entender el negocio por primera vez</button>
+        <button class="choice-btn" onclick="pick(this,'pc2')">Cuando hice los primeros contactos y llegaron los primeros rechazos</button>
+        <button class="choice-btn" onclick="pick(this,'pc2')">Cuando intente explicarles el negocio a mis contactos</button>
+        <button class="choice-btn" onclick="pick(this,'pc2')">Cuando vi el proceso de pago o la plataforma de Corsair</button>
+        <button class="choice-btn" onclick="pick(this,'pc2')">Cuando no vi resultados en la primera semana</button>
+        <button class="choice-btn" onclick="pick(this,'pc2')">No estuve cerca de abandonar</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">PC3</span>
+      <p class="q-text">¿Que es lo que nadie te dijo antes de empezar y que ojala te hubieran dicho?</p>
+      <textarea class="open-input tall" placeholder="Escribe con libertad..."></textarea>
+    </div>
+
+    <div class="price-q">
+      <span class="q-code">OFR1</span>
+      <p class="q-text">Cuando viste que el precio era $17, ¿que fue lo primero que pensaste?</p>
+      <p class="q-hint">Marca la opcion mas honesta, no la mas correcta.</p>
+      <div class="choice-list" style="margin-top:10px">
+        <button class="choice-btn" onclick="pick(this,'ofr1')">"Tan barato, no puede ser serio ni de calidad"</button>
+        <button class="choice-btn" onclick="pick(this,'ofr1')">"Es tan bajo que no arriesgo nada — lo pruebo"</button>
+        <button class="choice-btn" onclick="pick(this,'ofr1')">"El precio no fue lo que me hizo dudar — eran otras cosas"</button>
+        <button class="choice-btn" onclick="pick(this,'ofr1')">"Me parecio un precio justo para lo que prometia"</button>
+        <button class="choice-btn" onclick="pick(this,'ofr1')">"Me genero curiosidad precisamente por ser tan bajo"</button>
+      </div>
+    </div>
+
+    <div class="price-q">
+      <span class="q-code">OFR2</span>
+      <p class="q-text">¿Crees que un precio mas alto — por ejemplo $47 o $97 — habria aumentado tu percepcion de la calidad del sistema?</p>
+      <div class="choice-list" style="margin-top:10px">
+        <button class="choice-btn" onclick="pick(this,'ofr2')">Si — a $17 no me lo tome tan en serio</button>
+        <button class="choice-btn" onclick="pick(this,'ofr2')">No — el precio no cambiaria mi percepcion de calidad</button>
+        <button class="choice-btn" onclick="pick(this,'ofr2')">Un precio mas alto me habria frenado mas</button>
+        <button class="choice-btn" onclick="pick(this,'ofr2')">No lo se</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">OFR3</span>
+      <p class="q-text">¿Recomendarias el sistema a alguien de confianza tal como esta hoy?</p>
+      <p class="q-hint">0 = Nunca lo recomendaria · 10 = Lo recomendaria sin dudar</p>
+      <div class="scale-instr">Marca tu nivel</div>
+      <div class="nps-row">
+        <button class="nps-btn" onclick="nps(this,'ofr3')">0</button>
+        <button class="nps-btn" onclick="nps(this,'ofr3')">1</button>
+        <button class="nps-btn" onclick="nps(this,'ofr3')">2</button>
+        <button class="nps-btn" onclick="nps(this,'ofr3')">3</button>
+        <button class="nps-btn" onclick="nps(this,'ofr3')">4</button>
+        <button class="nps-btn" onclick="nps(this,'ofr3')">5</button>
+        <button class="nps-btn" onclick="nps(this,'ofr3')">6</button>
+        <button class="nps-btn" onclick="nps(this,'ofr3')">7</button>
+        <button class="nps-btn" onclick="nps(this,'ofr3')">8</button>
+        <button class="nps-btn" onclick="nps(this,'ofr3')">9</button>
+        <button class="nps-btn" onclick="nps(this,'ofr3')" style="border-right:none">10</button>
+      </div>
+      <div class="nps-ends" style="margin-top:4px"><span>Nunca lo recomendaria</span><span>Lo recomendaria sin dudar</span></div>
+      <div class="scale-desc" id="sd-ofr3" style="margin-top:4px"></div>
+    </div>
+
+    <div class="q">
+      <span class="q-code">OFR4</span>
+      <p class="q-text">¿Que haria que lo recomendaras mas — o que lo recomendaras si aun no lo harias?</p>
+      <textarea class="open-input tall" placeholder="Escribe aqui..."></textarea>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <button class="submit-btn" onclick="enviar()">Enviar mis respuestas</button>
+  <p class="submit-note">Tus respuestas son anonimas y se usan solo para mejorar el sistema.</p>
 
 </div>
 
+<!-- SUCCESS -->
 <div class="success" id="success">
   <h2>Muchas gracias.</h2>
-  <p>Tus respuestas nos llegan directamente y las usaremos para mejorar el sistema.<br><br>Estaremos en contacto contigo muy pronto.</p>
+  <p>Tus respuestas nos llegan directamente y las usaremos para mejorar el sistema antes del lanzamiento.<br><br>Estaremos en contacto contigo muy pronto.</p>
 </div>
 
 <script>
-// ─── PON AQUI TU URL DE APPS SCRIPT ──────────────────────────────────────
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxReIPs3g_LxC4bQyAJEfXHwdKmF9GLNtKwrBS0_NhXkahlvd02tSvmv4PJPy9hoOwQ/exec';
-// ─────────────────────────────────────────────────────────────────────────
-
-// Texto para cada valor de la escala
-const SCALE_LABELS = {
-  1: 'Duda pequeña — no me impide avanzar',
-  2: 'Me ralentiza un poco',
-  3: 'Freno importante — me hace ir más despacio',
-  4: 'Me paraliza casi por completo',
-  5: 'Freno total — si no resuelvo esto, abandono'
+const SCALE_TEXTS = {
+  1: "1 — No es un problema para mi",
+  2: "2 — Me ralentiza un poco",
+  3: "3 — Me genera bastante duda",
+  4: "4 — Me paraliza casi por completo",
+  5: "5 — Es un freno total"
+};
+const NPS_TEXTS = {
+  0:"0 — Jamas lo recomendaria",1:"1",2:"2",3:"3",
+  4:"4",5:"5 — Neutral",6:"6",7:"7",8:"8 — Probablemente si",
+  9:"9",10:"10 — Lo recomendaria sin dudar"
 };
 
-const R = {};
+const sections = ['s-intro','s-f1','s-f2','s-f3','s-f4','s-f5','s-f6','s-f7','s-f8','s-f9','s-f10','s-cierre'];
+const labels   = ['Introduccion','Fase 1 — Captacion','Fase 2 — Decision $17','Fase 3 — Onboarding','Fase 4 — Lista contactos','Fase 5 — Contactar','Fase 6 — El video','Fase 7 — Venta','Fase 8 — Comisiones','Fase 9 — Reto 2','Fase 10 y 11 — Plataforma y CSR26','Cierre'];
+const pcts     = [5,14,23,32,41,50,59,68,77,86,93,100];
 
-function pick(btn, id, v) {
-  const row = btn.closest('.int-row');
-  row.querySelectorAll('.int-btn').forEach(b => b.classList.remove('v1','v2','v3','v4','v5'));
-  btn.classList.add('v' + v);
-  const desc = document.getElementById('d-' + id);
-  if (desc) desc.textContent = SCALE_LABELS[v];
-  // Guardar el texto, no el número
-  R[id] = SCALE_LABELS[v];
+function pick(btn, id) {
+  const list = btn.closest('.choice-list');
+  list.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
 }
 
-function collectTextFields() {
-  const campos = {
-    'bucket_a': 'cubo_modelo_legal',
-    'bucket_b': 'cubo_tecnica_operativa',
-    'bucket_c': 'cubo_csr26',
-    'bucket_d': 'cubo_capacidad_personal',
-    'one_thing': 'one_thing'
-  };
-  Object.keys(campos).forEach(id => {
-    const el = document.getElementById(id);
-    if (el) R[campos[id]] = el.value.trim();
+function sc(btn, id) {
+  const v = parseInt(btn.textContent.trim());
+  const row = btn.closest('.scale-row');
+  row.querySelectorAll('.scale-btn').forEach(b => {
+    b.classList.remove('v1','v2','v3','v4','v5');
   });
+  btn.classList.add('v' + v);
+  const el = document.getElementById('sd-' + id);
+  if (el) el.textContent = SCALE_TEXTS[v];
+}
+
+function nps(btn, id) {
+  const v = parseInt(btn.textContent.trim());
+  const row = btn.closest('.nps-row');
+  row.querySelectorAll('.nps-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  const el = document.getElementById('sd-' + id);
+  if (el) el.textContent = NPS_TEXTS[v];
 }
 
 function enviar() {
-  collectTextFields();
-
-  const btn = document.getElementById('submitBtn');
-  const sending = document.getElementById('sendingMsg');
-  const errMsg = document.getElementById('errorMsg');
-
-  btn.disabled = true;
-  btn.textContent = 'Enviando...';
-  sending.style.display = 'block';
-  errMsg.style.display = 'none';
-
-  R['timestamp'] = new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' });
-  R['formulario'] = 'Mapa de Calor del Dolor CCE';
-
-  const callbackName = 'cb_' + Date.now();
-  const scriptEl = document.createElement('script');
-
-  window[callbackName] = function(response) {
-    delete window[callbackName];
-    if (document.body.contains(scriptEl)) document.body.removeChild(scriptEl);
-    document.getElementById('main').style.display = 'none';
-    document.getElementById('success').style.display = 'block';
-    window.scrollTo(0, 0);
-  };
-
-  scriptEl.onerror = function() {
-    delete window[callbackName];
-    btn.disabled = false;
-    btn.textContent = 'Enviar mis respuestas';
-    sending.style.display = 'none';
-    errMsg.style.display = 'block';
-  };
-
-  const params = encodeURIComponent(JSON.stringify(R));
-  scriptEl.src = APPS_SCRIPT_URL + '?callback=' + callbackName + '&data=' + params;
-  document.body.appendChild(scriptEl);
+  document.getElementById('main').style.display = 'none';
+  document.getElementById('success').style.display = 'block';
+  window.scrollTo(0, 0);
 }
+
+window.addEventListener('scroll', () => {
+  let active = 0;
+  sections.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (el.getBoundingClientRect().top <= window.innerHeight * 0.45) active = i;
+  });
+  document.getElementById('progFill').style.width = pcts[active] + '%';
+  document.getElementById('progLabel').textContent = labels[active];
+});
 </script>
 </body>
 </html>
-
-```
